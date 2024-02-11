@@ -1,0 +1,7 @@
+1. make a login system:this should send an verification email to the  user and ensure that the email exist and redirect the user to the login page.
+
+2. next I want to create a routing system thats it for now.
+
+UPDATE:
+febuary 3,2024 finished the router even thou I think it simple i did it using classes and its easily updated so i think its  good for now now I want to work on  the sign up page. 
+So Im just going to style the signup page for and create a DB for it. Also did the  design not at the place where i want it. 
