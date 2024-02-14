@@ -6,5 +6,5 @@ spl_autoload_register(function($class_name){
 // $Con=new dbcon();
 // $Con->db_connection();
 
-$router=new router(parse_url($_SERVER["REQUEST_URI"])["path"]);
+$router=new router($_SERVER["REQUEST_URI"]);
 $router->run();

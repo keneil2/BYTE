@@ -1,4 +1,5 @@
 <?php
+// data base conncetion class
 class dbcon{
     private $host="localhost";
     private $dbName="registration_";

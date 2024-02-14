@@ -6,11 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="">
-    <input type="text" name="username">
-    <input type="email" name="email">
-    <input type="password" name="password">
-    <input type="password" name="checkPass">
+    <?php
+    $display="WELCOME BACK"; 
+    require "layout/navbar.view.php"; 
+    ?>
+
+
+
+
+    <form action="../app/controllers\login.controller.php" method="POST">
+   <label for="username">Username</label><br>
+   <input type="text" placeholder="please enter you useranme" name="username"><br>
+   <input type="text" placeholder="please enter you EMAIL" name="email"><br>
+   <label for="pwd">Password</label><br>
+   <input type="password" name="pwd"><br>
+   <input type="submit" value="Login">
     </form>
 </body>
 </html>

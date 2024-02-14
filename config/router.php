@@ -6,8 +6,8 @@ public  $uri;
     "/"=> "index.php",
     "/signup"=> "app/views/signup.php",
     "/login"=> "app/views/login.php",
-    "/home"=> "app/views/homepage.php"
- ];
+    "/home"=> "app/views/homepage.php",
+    ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;
  }
@@ -18,8 +18,8 @@ public  $uri;
     require "app/views/$code.php";
     return $this;
 }else{
-        require "app/views/nofile.php";
-        return $this;
+        require "app/views/nofile.php";// requiring a view with that shows that the page cant be found
+        return $this; // basicall returning the object
     }
  }
  function run(){ // runs the router
