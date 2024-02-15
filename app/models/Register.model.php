@@ -11,14 +11,16 @@ class Register{
 //     $this->userName = $userName;
 //    }
  // inserting data to the data base
-   public static function insertData($userName,$passWord,$email) {
-  $query="INSERT INTO customers(USERNAME,PWD,Email) VALUES( :userName,:pwd,:email)";
+   public static function insertData($userName,$passWord,$email,$code,$status) {
+  $query="INSERT INTO customers(USERNAME,PWD,Email,verification_code,Account_status) VALUES( :userName,:pwd,:email,:code,:s)";
   $pdo=new dbcon();
   $PDO=$pdo->Db_connection();
   $stmt= $PDO->prepare($query);
   $stmt->bindParam("userName", $userName);
   $stmt->bindParam("pwd", $passWord);
   $stmt->bindParam("email", $email);
+  $stmt->bindParam("code", $code);
+  $stmt->bindParam("s", $status);
   $stmt->execute();
    }
    // checking if email already exist

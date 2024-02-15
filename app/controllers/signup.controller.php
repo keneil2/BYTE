@@ -30,9 +30,7 @@ require_once "app/../../models/Register.model.php";
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     function disPlayError(){
-        global    $userName ;
-        global  $Password;
-        global  $email;
+       
         $errors=[];
         if(empty($_POST["userName"]) || empty( $_POST["Password"]) || empty($_POST["Email"])){
          $errors["input_error"]="please fill out all fields!!";
@@ -42,12 +40,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
        $errors["email_exixt_in_DB"]="email already exist <a href='/login'>Go To login Page<a>";
         }}
         if(isset($errors)){
-        
             $_SESSION["client_side_Errors"]=$errors; 
         }else{
         $errors;
         } 
      }
+     // generates verification code 
+     function varificationCode($email){
+        $timestamp=time();
+        $string=$email.$timestamp;
+        $code=hash("sha256", $string);
+        return $code;
+     }
+
      // calling the function to handle errors in errors.view.php
      disPlayError();
     try{
@@ -55,11 +60,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $userName=htmlspecialchars($_POST["userName"]);
         $email=htmlspecialchars($_POST["Email"]);
         $password=htmlspecialchars(password_hash($_POST["Password"],PASSWORD_BCRYPT));
-         Register::insertData($userName,$password,$email);
-         $_SESSION["signup_status"] = "sucessfull";
-           header("Location:/login");
- exit("scrpit");
- 
+        $code=varificationCode($_POST["Email"]);// this will return the hash password
+        $_SESSION["Var_Code"]=$code;
+        $status="false";// status for the email it is always false until i can change it
+        Register::insertData($userName,$password,$email,$code,$status);
+        $_SESSION["signup_status"] = "sucessfull";
+        header("Location:/Email_varification");//sending the user to a var page to varify email
+        exit("scrpit");
     }else{
         header("Location:/signup");
     }

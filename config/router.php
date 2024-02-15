@@ -7,6 +7,8 @@ public  $uri;
     "/signup"=> "app/views/signup.php",
     "/login"=> "app/views/login.php",
     "/home"=> "app/views/homepage.php",
+    "/Email_varification"=>"app/views/auth/varification.view.php",
+    "/var_Email"=>"app/controllers/varification.contrl.php"
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;
