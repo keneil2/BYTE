@@ -61,7 +61,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $email=htmlspecialchars($_POST["Email"]);
         $password=htmlspecialchars(password_hash($_POST["Password"],PASSWORD_BCRYPT));
         $code=varificationCode($_POST["Email"]);// this will return the hash password
-        $_SESSION["Var_Code"]=$code;
+        setcookie("Var_code", $code,time()+ 360);
+        // $_SESSION["Var_Code"]=$code;
         $status="false";// status for the email it is always false until i can change it
         Register::insertData($userName,$password,$email,$code,$status);
         $_SESSION["signup_status"] = "sucessfull";

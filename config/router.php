@@ -25,8 +25,13 @@ public  $uri;
     }
  }
  function run(){ // runs the router
-
- if (array_key_exists($this->uri,$this->routes)) {
+   $parseUri=strpos($this->uri, "?");
+if($parseUri!==false){
+   $new_uri=preg_split("/\?/",$this->uri);
+$this->uri=$new_uri[0];
+   
+}
+ if (array_key_exists($this->uri,$this->routes)){
     require $this->routes[$this->uri]; // what happening here? remember uri key which is like the index of the array
  }else{
     $this->givingresponce(); // giving the response if the $code.php exist 
