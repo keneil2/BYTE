@@ -1,5 +1,5 @@
 <?php 
-require_once "app/../../../controllers/signup.controller.php"; 
+// require_once "app/../../../controllers/signup.controller.php";
 // require_once "/../../../public/css/navbar.css";
 
 class HandlingErrors{

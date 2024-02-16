@@ -13,6 +13,10 @@
    <br>
    <?php
   echo $_COOKIE["Var_code"];
+
+  if(isset($_SESSION["E"])){
+    echo "no html if nothing";
+  }
    ?>
     </form>
 </body>
