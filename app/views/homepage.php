@@ -6,13 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-<?php require "layout/navbar.view.php"; ?>
-
-    <nav>
-        <h1>Zestful</h1>
-        <a href="/signup">Signup</a>
-        <p>menu icon</p>
-    </nav>
+<?php $display="Welcome  ".$_COOKIE['userName'];
+require "layout/navbar.view.php";
+ ?>
 
 </body>
 </html>

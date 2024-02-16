@@ -8,19 +8,20 @@
 <body>
     <?php
     $display="WELCOME BACK"; 
-    require "layout/navbar.view.php"; 
+    // require "layout/navbar.view.php"; 
     ?>
 
 
 
 
-    <form action="../app/controllers\login.controller.php" method="POST">
+    <form action="/" method="POST">
    <label for="username">Username</label><br>
    <input type="text" placeholder="please enter you useranme" name="username"><br>
    <input type="text" placeholder="please enter you EMAIL" name="email"><br>
    <label for="pwd">Password</label><br>
    <input type="password" name="pwd"><br>
    <input type="submit" value="Login">
+   <?php require "login.error.view.php"?>
     </form>
 </body>
 </html>

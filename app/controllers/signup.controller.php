@@ -4,30 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use ParagonIE\Certainty\RemoteFetch;
 
 // this page handles errors and uses input 
-function Sstart(){
-    ini_set("session.use_only_cookies",1);
-    session_set_cookie_params( [
-        "lifetime"=> 1800,
-        "path"=> "/",
-        "domain"=> "localhost",
-        "secure"=> true,
-        "httponly"=> true,
-        
-    ]);
-    
-    session_start();
-    // session_regenerate_id(true);
-    if(empty($_SESSION["last Activity"])){
-        $_SESSION["last Activity"] = time();
-    }else{
-        if(time()-$_SESSION["last Activity"]>=1800){
-           session_regenerate_id(true);
-           $_SESSION["last Activity"] = time();
-        }
-    }
-}
 
-Sstart();
 require_once "app/../../models/Register.model.php";
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
@@ -51,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
      function varificationCode($email){
         $timestamp=time();
         $string=$email.$timestamp;
-        $code=hash("sha256", $string);
+        $code=mt_rand(100000, 999999);
         return $code;
      }
      // this function will send the email pass:rata fkpi rvhj ztdc
@@ -102,13 +79,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $password=htmlspecialchars(password_hash($_POST["Password"],PASSWORD_BCRYPT));
         $code=varificationCode($_POST["Email"]);// this will return the hash password
         setcookie("Var_code", $code,time()+ 360);
+        setcookie("userName", $userName);
         
         checkEmailExist($_POST["Email"],$code,$_POST["userName"]);
 
         $_SESSION["Var_Code"]=$code;
         $status="false";// status for the email it is always false until i can change it
         Register::insertData($userName,$password,$email,$code,$status);
-        // header("Location:/Email_varification");//sending the user to a var page to varify email
+        header("Location:/Email_varification");//sending the user to a var page to varify email
         exit("scrpit");
     }else{
         header("Location:/signup");
