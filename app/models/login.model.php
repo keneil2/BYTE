@@ -9,17 +9,16 @@ public static function canLogin($email,$passWord,$username) {
   $PDO=$pdo->Db_connection();
   $stmt=$PDO->prepare($query);
   $stmt->bindParam("E", $email);
-  $stmt->bindParam("E", $username);
+  $stmt->bindParam("U", $username);
   $stmt->execute();
   $results=$stmt->fetch(PDO::FETCH_ASSOC);
   if($results){
    if(password_verify($passWord,$results["PWD"])){
     return true;
-  
     }else {
         return false;
     }}
 }catch(PDOException $e) {
-    return"error:". $e->getMessage();
+    return "error:". $e->getMessage();
 }
 }}

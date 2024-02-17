@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     // checking users pwd
      require_once "../models/login.model.php";
      // this class is reponsible for checking if the password and email are correct
-$results=Login_model::canLogin($_POST["email"],$_POST["pwd"]);
+$results=Login_model::canLogin($_POST["email"],$_POST["pwd"],$_POST["username"]);
 
 // checking the password
 if ($results){
