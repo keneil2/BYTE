@@ -1,11 +1,17 @@
 <?php 
 
-
+// this page displayes the login the errrors to the login page
 if(isset($_SESSION["login_errors"])){
+// displayed each error
 foreach ($_SESSION["login_errors"] as $key) {
     echo "<p class='connection_error' >".$key."</p>";
-}}elseif(isset($_SESSION["conncetion_error"])){
-    // header("Location:/login");
+// destroying the sesession once we are done with it
+    unset($_SESSION["login_errors"]);
+
+}}else if(isset($_SESSION["conncetion_error"])){
+   // this display errors if we cant conncet to the data base
     echo "<p class='connection_error' >".$_SESSION["conncetion_error"]."</p>";
+    unset($_SESSION["conncetion_error"]);
     exit();
 }
+

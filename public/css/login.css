@@ -3,7 +3,33 @@ margin:0.5em;
 padding:0;
 box-sizing:border-box;
 }
+form{
+    /* background-color: white; */
+    padding:50px 10px;
+    color:white;
+    font-weight: 300;
+
+}
+.container{
+    position:absolute;
+    top:45%;
+    left:40%;
+}
 form input{
-    width:100px;
-    
+    width:350px;
+    height:40px;
+    padding:15px;
+    border:none;
+    border-radius:5px;
+}
+form input[type='submit']{
+    background-color: orangered;
+    color:white;
+    width:150px;
+}
+.connection_error{
+ color:red;
+ font-size:1.2rem;
+ background-color: white;
+ padding:10px 20px;
 }

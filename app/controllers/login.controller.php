@@ -6,7 +6,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $errors=[];
     if(empty($_POST["username"]) && empty($_POST["email"]) && empty($_SESSION["pwd"])){
         $errors["empty_fields"]="please Enter your credentials";
-        header("Location:/login");
     }else{
         try{ // setting an error handler to catch any errors
         $email = htmlspecialchars($_POST["email"]);
@@ -19,27 +18,33 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     // checking users pwd
      require_once "../models/login.model.php";
+     // this class is reponsible for checking if the password and email are correct
 $results=Login_model::canLogin($_POST["email"],$_POST["pwd"]);
 
 // checking the password
 if ($results){
+    // setting login status to true if the user and password and email is correct
     $_SESSION["Login_status"]=true;
+    // sending the user to the login page if they are sucessful
     header('Location:/home');
     exit();
 }else{
+    // setting an error if the user can't loguin
     $_SESSION["Login_status"]=false;
     $errors["credential_errors"]="User name or password is incorrect";
 }
-    
-    if(isset($errors)){
-        $_SESSION["login_errors"]=$errors;
-        header("Location:/login");
-        exit();
-} }
+   }
+   // cathing errors if there are other errors for dev purposes
 catch(Exception $e){
    echo $e->getMessage();
     header("Location:/login");
     exit();
 }
 }
+// checking if there are any errors and storing them in a  session
+if(isset($errors)){
+    $_SESSION["login_errors"]=$errors;
+    header("Location:/login");
+    exit();
+} 
 }

@@ -12,7 +12,9 @@
    <input type="submit" value="Varify My Email">
    <br>
    <?php
-  echo $_COOKIE["Var_code"];
+  if  (isset($_COOKIE["Var_code"])){
+    echo "Email sent";
+  }
 
   if(isset($_SESSION["E"])){
     echo "no html if nothing";
