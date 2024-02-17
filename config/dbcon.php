@@ -11,7 +11,9 @@ class dbcon{
        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
        return $con;
     }catch(Exception $e){
-       echo "connection Error".$e->getMessage();
+       $_SESSION["conncetion_error"]="<pstyle='color:red;'> connection error:check your internet connection</p>";
+       header("Location:/login");
+       exit("");
     }
     }
 }

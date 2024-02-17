@@ -3,6 +3,7 @@ require_once "../../config/dbcon.php";
 // this class handles any that is related to the login page
 class Login_model{
 public static function canLogin($email,$passWord) {
+    try{
     $query= "SELECT Email,PWD FROM customers WHERE  Email=:E";
     $pdo=new dbcon();
   $PDO=$pdo->Db_connection();
@@ -17,4 +18,8 @@ public static function canLogin($email,$passWord) {
     }else {
         return false;
     }}
+}catch(PDOException $e) {
+    echo"error:". $e->getMessage();
+    exit("");
+}
 }}
