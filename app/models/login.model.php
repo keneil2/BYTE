@@ -14,7 +14,7 @@ public static function canLogin($email,$passWord) {
    if(password_verify($passWord,$results["PWD"])){
     return true;
   
-    }}else {
+    }else {
         return false;
-    }
+    }}
 }}

@@ -1,13 +1,12 @@
 <?php
-var_dump(session_status());
+require_once "../../config/session.php";
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $_SESSION["login_email"]=null;
     $_SESSION["login_pwd"]=null;
+    $errors=[];
     if(empty($_POST["username"]) && empty($_POST["email"]) && empty($_SESSION["pwd"])){
-        $_SESSION["login_errors"]="please Enter your credentials";
-        header("Location:/login"); 
+        $errors["empty_fields"]="please Enter your credentials";
     }else{
-    if(isset($_POST["email"]) && isset($_POST["pwd"])){
         $email = htmlspecialchars($_POST["email"]);
         $pwd= htmlspecialchars($_POST["pwd"]);
         // setting  users credentials in a sessions lol not sure why i did this;
@@ -25,11 +24,16 @@ $results=Login_model::canLogin($_POST["email"],$_POST["pwd"]);
 if ($results){
     $_SESSION["Login_status"]=true;
     header('Location:/home');
-    // exit();
+    exit();
 }else{
     $_SESSION["Login_status"]=false;
-    header("Location:/login");
-  }
+    $errors["credential_errors"]="User name or password is incorrect";
+    // exit();
+   
 }
     }
-}
+    if(isset($errors)){
+        $_SESSION["login_errors"]=$errors;
+        header("Location:/login");
+        exit();
+}}
