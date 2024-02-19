@@ -15,3 +15,9 @@ foreach ($_SESSION["login_errors"] as $key) {
     exit();
 }
 
+
+
+if (isset($_COOKIE["redirect_from_homepage"])){
+    echo "<p class='connection_error' >".$_COOKIE["redirect_from_homepage"]."</p>";
+}
+

@@ -13,6 +13,7 @@
     <?php
     $display="Login here"; 
     require "layout/navbar.view.php";
+
     ?>
 
 
@@ -26,6 +27,8 @@
    <label for="pwd">Password</label><br>
    <input type="password" name="pwd"><br>
    <input type="submit" value="Login">
-    </form></div>
+    </form>
+ <p class="p">don't have an account?<a href="/signup"> signup here</a></p>
+</div>
 </body>
 </html>

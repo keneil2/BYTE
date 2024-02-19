@@ -7,6 +7,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(empty($_POST["username"]) && empty($_POST["email"]) && empty($_SESSION["pwd"])){
         $errors["empty_fields"]="please Enter your credentials";
     }else{
+        setcookie("username", $_POST["username"],time() + 3600, "/");
+       var_dump($_COOKIE["username"]);
         try{ // setting an error handler to catch any errors
         $email = htmlspecialchars($_POST["email"]);
         $pwd= htmlspecialchars($_POST["pwd"]);
@@ -26,6 +28,7 @@ if ($results){
     // setting login status to true if the user and password and email is correct
     $_SESSION["Login_status"]=true;
     // sending the user to the login page if they are sucessful
+
     header('Location:/home');
     exit();
 }else{

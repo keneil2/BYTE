@@ -8,3 +8,15 @@ So Im just going to style the signup page for and create a DB for it. Also did t
 Upadte:
 feb 12 worink on making the signin part still
 didnt wrote anything in here for a while but as of febuary 18,2024 i finished the signup system
+
+
+ code to be reused 
+// if (isset($_COOKIE['userName'])){
+    //     $display="Welcome  ".$_COOKIE['userName'];
+    // }else if(isset($_COOKIE['username'])){
+    //     $display="Welcome  ".$_COOKIE['username'];
+    // }else if (!isset($_COOKIE['username']) && !isset($_COOKIE['username'])){
+    //     header('Location:/login');
+    //     setcookie('redirect_from_homepage','you have to log first', time()+12,'/');
+    //     exit;
+    // }

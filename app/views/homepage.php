@@ -7,7 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-<?php $display="Welcome  ".$_COOKIE['userName'];
+<?php 
+if (isset($_COOKIE['userName'])){
+        $display="Welcome  ".$_COOKIE['userName'];
+    }else if(isset($_COOKIE['username'])){
+        $display="Welcome  ".$_COOKIE['username'];
+    }else if (!isset($_COOKIE['username']) && !isset($_COOKIE['username'])){
+        header('Location:/login');
+        setcookie('redirect_from_homepage','you have to log first', time()+12,'/');
+        exit;
+    }
+
+
 require "layout/navbar.view.php";
  ?>
  <div class="about-us">
@@ -18,7 +29,7 @@ require "layout/navbar.view.php";
         <img src="public\css\img\pexels-jonathan-borba-2983099.jpg" alt="modernfood">
     </div>
     <div class="more">
-        <center><h5>Taste tradition</h5></center>
+        <div><h5>Taste tradition</h5></div>
         <h3>Tradition <span>& Mordern<span></h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
                 Fugit iste eligendi itaque modi</p>
