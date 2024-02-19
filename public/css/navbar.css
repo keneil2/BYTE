@@ -67,6 +67,11 @@ nav{
     color: white;
     text-decoration:none;
 }
+.nav2 button:hover,.nav2 button a:hover{
+   background-color: aliceblue;
+   color:black;
+}
+
 ul{
     margin-right: 100px;
 }
@@ -84,7 +89,7 @@ nav ul li a:hover{
  border-bottom:2px solid orangered;
 }
 .display{
-    font-size:3rem;
+    font-size:4rem;
     font-family: "Roboto", sans-serif;
     font-weight:500;
     font-style: normal;

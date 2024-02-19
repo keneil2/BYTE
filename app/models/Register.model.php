@@ -2,14 +2,6 @@
 require_once "app/../config/dbcon.php";
 // class for creating users 
 class Register{
-//     public string $userName;
-//     public string $passWord;
-//     public string $email;
-//    public function __construct($userName,$passWord,$email) {
-//     $this->email = $email;
-//     $this->passWord = $passWord;
-//     $this->userName = $userName;
-//    }
  // inserting data to the data base
    public static function insertData($userName,$passWord,$email,$code,$status) {
   $query="INSERT INTO customers(USERNAME,PWD,Email,verification_code,Account_status) VALUES( :userName,:pwd,:email,:code,:s)";
