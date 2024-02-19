@@ -4,7 +4,7 @@
 
 *{
     box-sizing: border-box;
-    margin:0.2em;
+    margin:0.1em;
     padding:0;
     font-family: "Poppins", sans-serif;
     font-style: normal;
@@ -18,6 +18,7 @@ nav{
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode:darken;
+    background-color: rgb(220, 228, 235);
 }
 .nav1{
     display:flex;

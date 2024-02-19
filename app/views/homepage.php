@@ -18,8 +18,13 @@ require "layout/navbar.view.php";
         <img src="public\css\img\pexels-jonathan-borba-2983099.jpg" alt="modernfood">
     </div>
     <div class="more">
-        <h5>Taste tradition</h5>
-        <h3>Tradition <span>And Mordern<span><h3>
+        <center><h5>Taste tradition</h5></center>
+        <h3>Tradition <span>& Mordern<span></h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Fugit iste eligendi itaque modi</p>
+        <button><a href="/about">View More</a></button>
+   
+        
     </div>
     <div class="image">
         <img src="public\css\img\pexels-jonathan-borba-2983099.jpg" alt="modernfood">
