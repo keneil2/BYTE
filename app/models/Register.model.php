@@ -23,7 +23,13 @@ class Register{
   $stmt= $PDO->prepare($query);
   $stmt->bindParam(":email", $email);
   $stmt->execute();
-  $result=$stmt->execute();
+  $result =$stmt->fetch(PDO::FETCH_ASSOC);
+  // if ($result){
+  //   return true;
+  // }else{
+  //   return false;
+  // }
+  //  }
   return $result;
    }
   }

@@ -27,6 +27,7 @@
     <form action="/" method="POST">
     <!-- <h2 font-color="red">SIGN UP HERE</h2> -->
     <?php require_once "layout/error.view.php";
+    // var_dump( $_SESSION["client_side_Errors"]);
     ?>
     <input type="text" name="userName" placeholder="Create a Useranme"><br>
     <input type="email" name="Email" placeholder="Enter an Email"><br>

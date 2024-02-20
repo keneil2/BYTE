@@ -1,10 +1,11 @@
-<?php 
-
+<?php
 // this page displayes the login the errrors to the login page
 if(isset($_SESSION["login_errors"])){
+
 // displayed each error
 foreach ($_SESSION["login_errors"] as $key) {
     echo "<p class='connection_error' >".$key."</p>";
+
 // destroying the sesession once we are done with it
     unset($_SESSION["login_errors"]);
 

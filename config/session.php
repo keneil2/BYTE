@@ -1,5 +1,6 @@
 <?php
-function Sstart(){
+class Session{
+public static function Sstart(){
     ini_set("session.use_only_cookies",1);
     session_set_cookie_params( [
         "lifetime"=> 1800,
@@ -20,6 +21,5 @@ function Sstart(){
            $_SESSION["last Activity"] = time();
         }
     }
-}
+}}
 
-Sstart();

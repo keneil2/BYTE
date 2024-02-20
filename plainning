@@ -20,3 +20,4 @@ didnt wrote anything in here for a while but as of febuary 18,2024 i finished th
     //     setcookie('redirect_from_homepage','you have to log first', time()+12,'/');
     //     exit;
     // }
+to do tommarrow : login controller errors to fix

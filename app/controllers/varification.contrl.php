@@ -1,9 +1,12 @@
 <?php 
 // handles user varification code
+require_once "app/models\login.model.php";
 if ($_SERVER["REQUEST_METHOD"]=="GET"){
-    if(isset($_GET["var_code"])){
-        
-        if($_GET["var_code"]==$_COOKIE["Var_code"]){
+    if(isset($_GET["var_code"]) && !empty($_GET["var_code"])){
+        Login_model::accountStatus();
+        if($_GET["var_code"]==$_SESSION["Var_Code"]){
          header("Location:/home"); 
         }
+}else{
+    header("Location:/Email_varification");
 }}

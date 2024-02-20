@@ -2,9 +2,7 @@
 require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use ParagonIE\Certainty\RemoteFetch;
-
 // this page handles errors and user inputs
-
 require_once "app/../../models/Register.model.php";
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 // this function handles errors and store them in a session to be displayed 
@@ -13,17 +11,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         if(empty($_POST["userName"]) || empty( $_POST["Password"]) || empty($_POST["Email"])){
          $errors["input_error"]="please fill out all fields!!";
         }
-        if(!empty($_POST["Email"]) && isset( $_POST["Email"])){
-        if(Register::isEmailExist($_POST["Email"])==true){
+        if(!empty($_POST["Email"]) && isset( $_POST["Email"])){ 
+        var_dump(Register::isEmailExist(htmlspecialchars($_POST["Email"])));
+        if(Register::isEmailExist(htmlspecialchars($_POST["Email"]))==true){
        $errors["email_exixt_in_DB"]="email already exist <a href='/login'>Go To login Page<a>";
         }}
-        if(isset($errors)){
+        if(!empty($errors)){
             $_SESSION["client_side_Errors"]=$errors; 
-            // header("Location:/signup");
-            // exit();
-        }else{
-        $errors;
-        } 
+            header("Location:/signup");
+            var_dump($_SESSION["client_side_Errors"]); 
+            echo "set";
+            exit(); 
+        }
      }
      // generates verification code 
      function varificationCode(){
@@ -31,9 +30,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         return $code;
      }
      // this function will send the email  using a PHP lib called PHPMailer pass:rata fkpi rvhj ztdc
+
+
+
+
+
      function checkEmailExist($email,$code,$userName){
 // calling the php object
-        $mail = new PHPMailer(); 
+         $mail = new PHPMailer(); 
         // not recommended for production environment basicaly unsecure connections
         $mail->SMTPOptions = [
             'ssl' => [
@@ -73,34 +77,43 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         // finally sending the email
         $mail->send();
         }
-        
-     
-
+        disPlayError();
     try{
           // calling the function to handle errors in errors.view.php   
-        disPlayError();
         // checking the input fields
     if(!empty($_POST["userName"]) && !empty($_POST["Password"]) && !empty($_POST["Email"])){
         // sanitizing the users input probably should have used filter_var()
         $userName=htmlspecialchars($_POST["userName"]);
         $email=htmlspecialchars($_POST["Email"]);
+        // this is the email that I will be check in the varification controller file
+        setcookie("var_email",$email,time()+3000,'/');
+        ;
+
          // this will return the hash password
         $password=htmlspecialchars(password_hash($_POST["Password"],PASSWORD_BCRYPT));
+
         // varification function returns var code
         $code=varificationCode();
+
         // setting a cookie to store  the code not really recommend but wanted to use it as practice
-        setcookie("Var_code", $code,time()+ 360);
+        setcookie("Var_code", $code,time()+ 360,"/");
+
         // setting a cookie for the username to use later
-        setcookie("userName", $userName);
+        setcookie("userName", $userName,time()+ 360,"/");
+        
         // calling the function that sends the email
         checkEmailExist($_POST["Email"],$code,$_POST["userName"]);
 
         $_SESSION["Var_Code"]=$code;// setting the session code
+
         // status for the email it is always false until i can change it
-        $status="false";
+        $status="Inactive";
+
         // inserting data into the database
         Register::insertData($userName,$password,$email,$code,$status);
+
         //sending the user to a var page to varify email
+
         header("Location:/Email_varification");
         exit("email sent");
     }else{

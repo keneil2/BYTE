@@ -14,11 +14,9 @@ if (isset($_COOKIE['userName'])){
         $display="Welcome  ".$_COOKIE['username'];
     }else if (!isset($_COOKIE['username']) && !isset($_COOKIE['username'])){
         header('Location:/login');
-        setcookie('redirect_from_homepage','you have to log first', time()+12,'/');
+        setcookie('redirect_from_homepage','you have to login or signup first', time()+12,'/');
         exit;
     }
-
-
 require "layout/navbar.view.php";
  ?>
  <div class="about-us">
