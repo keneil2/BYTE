@@ -1,7 +1,8 @@
 <?php
 require_once "../models/admin.model.php";
 use app\controllers\AdminDb;
-require_once "";
+require_once "../../config/session.php";
+Session::Sstart();
 
 function Sanitizeinput($input){
           if(!empty($input)){
@@ -22,7 +23,7 @@ function validateEmail($email){
 function validateUsername($username){
 if (!empty($username)){
     $filterUsername=filter_var($username,FILTER_SANITIZE_STRING);
-    if (preg_match("/^([A-Za-z][0-9]+){10}$/", $filterUsername)){
+    if (preg_match("/([A-Za-z][0-9]+){10}/", $filterUsername)){
         return true;
     }else{
         return false;
@@ -32,8 +33,8 @@ if (!empty($username)){
 
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
     $Messages=[];
-    if( validateUsername($_POST["userName"])){
-        $Messages["username"]="sucessfull";
+    if( validateUsername($_POST["userName"])==false){
+        $Messages["username_errors"]="user name must be 10 chars long and contains at least one number";
     }
        $userName= Sanitizeinput($_POST["userName"]);
        $Email= validateEmail($_POST["Email"]);
@@ -42,7 +43,7 @@ if ($userName==false && $Email==false && $Pwd==false){
         $Messages["errors"]=" cannot submit empty fields";
        }
        if (!empty($Messages)){
-        $_SESSION=$Messages;
+        $_SESSION["feedBack"]=$Messages;
         header("Location:/new-admin");
         exit;
        }

@@ -12,6 +12,9 @@
       <input type="text" name="Pwd" placeholder="enter Password">
       <input type="text"  name="retypedPwd" placeholder="enter Retype-Password">
       <button type="submit">add New admin</button>
+      <?php require "layout/admin.message.view.php";
+      ?>
       </form>
+      
 </body>
 </html>
