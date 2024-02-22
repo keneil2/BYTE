@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="../../controllers\admin.login.contrl.php" method="POST">
+    <form action="app/controllers/admin.login.contrl.php" method="POST">
         <input type="text" placeholder="enter username" name="userName"><br>
         <input type="text" placeholder="enter email" name="Email"><br>
         <input type="text" placeholder="enter Passowrd" name="pwd"><br>
