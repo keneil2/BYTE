@@ -2,6 +2,10 @@
 require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use ParagonIE\Certainty\RemoteFetch;
+spl_autoload_register(function($class){
+    require_once 'config/session.php';
+});
+Session::Sstart();
 // this page handles errors and user inputs
 require_once "app/../../models/Register.model.php";
 if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -67,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         // subject of the email
         $mail->Subject ='Action required:verify your Email Address';
         // this is me geting the content of a file so I can use it here 
-        $path=file_get_contents('app/views/var_email.php');
+        $path=file_get_contents('app/views/layout//var_email.php');
         // this is me using str_replace two things in a string the username and the code before sending the email to the user 
         $eamilBody=str_replace(['{userName}','{verificationCode}'],[$userName,$code],$path);
        // the body of the emial
@@ -100,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
         // setting a cookie for the username to use later
         setcookie("userName", $userName,time()+ 360,"/");
-        
+
         // calling the function that sends the email
         checkEmailExist($_POST["Email"],$code,$_POST["userName"]);
 

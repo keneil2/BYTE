@@ -8,10 +8,12 @@ public  $uri;
     "/login"=> "app/views/login.php",
     "/home"=> "app/views/homepage.php",
     "/Email_varification"=>"app/views/auth/varification.view.php",
-    "/var_Email"=>"app/controllers/varification.contrl.php"
+    "/var_Email"=>"app/controllers/varification.contrl.php",
+    "/admin"=> "app/views/admin.view.php",
+
     ];
  function __construct($uri){ // takes current server URI
-    $this->uri=$uri;
+    $this->uri=$uri;  
  }
  function givingresponce($code=404){ // this give http response
     http_response_code($code); // this function sets the sever response code in this case I only know about 404 which means the page is not found

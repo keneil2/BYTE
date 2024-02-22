@@ -1,6 +1,6 @@
 <?php 
 spl_autoload_register(function ($class) {
-require_once "config/dbcon.php";});
+require_once "../../config/dbcon.php";});
 // this class handles any that is related to the login page
 class Login_model{
 public static function canLogin($email,$passWord,$username) {

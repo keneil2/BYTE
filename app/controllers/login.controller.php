@@ -1,4 +1,9 @@
 <?php
+spl_autoload_register(function($class){
+    require_once '../../config/session.php';
+});
+Session::Sstart();
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $_SESSION["login_email"]=null;
     $_SESSION["login_pwd"]=null;
