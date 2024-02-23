@@ -18,6 +18,9 @@ class AdminDb{
       exit();
     }
 }
+
+
+
  public function addUsers(string $username,string $email,string $password){
 try{   $con=$this->Dbcon();
        $query="INSERT INTO adminusers(USERNAME,EMAIL,PWD) VALUES(:U,:E,:P)";
@@ -25,9 +28,51 @@ try{   $con=$this->Dbcon();
        $stmt->bindParam("U",$username);
        $stmt->bindParam("E",$email);
        $stmt->bindParam("P",$password);
-      return $stmt->execute();} catch (\PDOException $e) {
+      return $stmt->execute();
+    } catch (\PDOException $e) {
         echo "ADDING USERS ERROR: ". $e->getMessage();
         exit();
       }
  }
+
+
+
+
+ function  isEmailUnique($email){
+  try{
+  $con=$this->Dbcon();
+
+  $query= "SELECT * FROM adminusers WHERE Email=:email";
+  $stmt=$con->prepare($query);
+  
+  $stmt->bindParam(":email",$email);
+  $stmt->execute();
+
+  if ($stmt->rowCount()> 0){
+    $stmt->closeCursor();
+    $con=null;
+    return true;
+  }else {
+    $stmt->closeCursor();
+    $con=null;
+    return false;
+  }
+}catch (\Exception $e) {
+  echo "Email_check_Error:". $e->getMessage();
+
+ }}
+
+
+
+
+public function authenicate(string $username,string $password){
+  $con=$this->Dbcon();
+  $query="SELECT * Email FROM adminusers WHERE USERNAME=:username";
+  $stmt=$con->prepare($query);
+  $stmt->bindParam("username",$username);
+  $stmt->bindParam("password",$password);
+  $stmt->execute();
+  return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+}
+ 
 }

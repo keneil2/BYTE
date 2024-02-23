@@ -37,7 +37,7 @@ public static function  checkAcStatus($email){
 
 //this is used to close the connection
 $stmt->closeCursor(); 
-// $PDO = null;
+$PDO = null;
      var_dump($status["Account_status"]);
 }
 public static function accountStatus(){

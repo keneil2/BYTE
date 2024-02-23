@@ -32,32 +32,43 @@ if (!empty($username)){
 }
 
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
+
     $Messages=[];
-    if( validateUsername($_POST["userName"])==false){
-        $Messages["username_errors"]="user name must be 10 chars long and contains at least one number";
-    }
-       $userName= Sanitizeinput($_POST["userName"]);
-       $Email= validateEmail($_POST["Email"]);
-       $Pwd= Sanitizeinput($_POST["Pwd"]);
+    $userName= Sanitizeinput($_POST["userName"]);
+    $Email= validateEmail($_POST["Email"]);
+    $Pwd= Sanitizeinput($_POST["Pwd"]);
+
+
 if ($userName==false && $Email==false && $Pwd==false){
         $Messages["errors"]=" cannot submit empty fields";
+       }else if (  $Pwd!==$_POST['retypedPwd']){
+        $Messages['password_check']= 'passwords dont match';
+       }elseif( validateUsername($_POST["userName"])==false){
+           $Messages["username_errors"]="user name must be 10 chars long and contains at least one number";
        }
+
+
        if (!empty($Messages)){
         $_SESSION["feedBack"]=$Messages;
         header("Location:/new-admin");
         exit;
        }
-        try{
+
+
+
+    try{
           $admin= new AdminDb();
-          $results=$admin->addUsers($userName,$Email,$Pwd);
+          $results=$admin->addUsers($userName,$Email,password_hash($Pwd,PASSWORD_BCRYPT));
+
+        
           if($results){
             $_SESSION["user"]= "Added succefully!!";
             header("Location:/new-admin");
-          }
-          else{
+          }else{
            throw new Exception("USER NOT ADDED CHECK CONNECTION");
           }
-        }catch (Exception $e){
+
+    }catch (Exception $e){
             echo $e->getMessage();
         }
 
