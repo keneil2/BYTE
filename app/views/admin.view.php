@@ -9,7 +9,8 @@
 </head><?php
 ?>
 <body>
-   <div class="side-nav"><h1>JT</h1>
+   <nav>
+   <div class="side-bar"><h1>JT</h1>
    <ul>
     <li><a href="/dashboard">DashBoard</a></li>
     <li><a href="/orders">Orders/a></li>
@@ -21,16 +22,32 @@
     <li><a href="/logout">Logout</a></li>
    </ul>
 </div>
-   <section class="admin-section">
-   <nav>
+
+
+   <div class="admin-section">
+   <!-- <nav> -->
 <div class="date">FEB 12,2024</div>
-<div class="left-nav">
+<div class="right-nav">
 <div class="search-bar"><input type="text" placeholder="..Search"><i class="fa-solid fa-magnifying-glass"></i></div>
 <div><i class="fa-regular fa-bell"></i></div>
-<div>   <img src="public/css/img/9703596.png" alt="admin-profile-pic"> </div>
+<div class="profile">   <img src="public/css/img/9703596.png" alt="admin-profile-pic"> </div>
+</div>
 </div>
 </nav>
-   </section>   
+
+
+
+<div class="quick-display">
+   <div class="heading"><h1>ORDERS</h1> <p>Daily</p><p>Monthly</p></div>
+   <div class="Order-info">
+   <div class="New-Orders">
+
+   </div>
+   <div class="pending-Orders"></div>
+   <div class="delivered-Orders"></div>
+   </div>
+
+</div>
    <script src="https://kit.fontawesome.com/f05da63fd8.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -2,17 +2,32 @@
     margin:0;
     padding:0;
 }
-body{
+nav{
     display: flex;   
+    width:100%;
+    position:fixed;
 }
-.side-nav{
+.side-bar{
     width: 25%;
     padding:10px;
 }
+.side-bar ul{
+    margin-top: 20px;
+}
+.side-bar ul li{
+    margin-top:20px;
+}
+.side-bar ul li a{
+    text-decoration: none;
+    color:black;
+}
 .admin-section{
     width:70%;
+    display: flex;
+    justify-content: space-around;
+    /* height:fit-content; */
 }
-.admin-section nav{
+ nav{
     display:flex;
     justify-content:space-between;
 }
@@ -20,19 +35,32 @@ body{
     border:none;
     background-color: transparent;
     padding-left:5px;
+    height: 30px;
+    outline: none;
     
 }
 .search-bar{
     border:1px solid black;
     border-radius:10px;
-    padding:5px;
+    height:30px;
+    /* padding:5px; */
 }
-/* .date{
-    margin-top:50px;
-} */
-.left-nav{
+.date{
+    margin-top:50px; 
+}
+.right-nav{
     display: flex;
     justify-content: space-between;
     width:30%;
     margin-top:50px;
+}
+.profile{
+    border-radius:50%;
+    border: 1px solid black;
+    width:30px;
+    height:30px;
+}
+.profile img{
+    width:30px;
+    height:30px;
 }
