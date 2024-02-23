@@ -23,7 +23,7 @@ function validateEmail($email){
 function validateUsername($username){
 if (!empty($username)){
     $filterUsername=filter_var($username,FILTER_SANITIZE_STRING);
-    if (preg_match("/([A-Za-z][0-9]+){10}/", $filterUsername)){
+    if (preg_match("/^[A-Za-z]+[0-9]*$/", $filterUsername)){
         return true;
     }else{
         return false;
@@ -37,8 +37,13 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     $userName= Sanitizeinput($_POST["userName"]);
     $Email= validateEmail($_POST["Email"]);
     $Pwd= Sanitizeinput($_POST["Pwd"]);
+    // a method from the AdminDb class that check for an email
+    $checkEmail= new AdminDb();
 
+ if($checkEmail-> isEmailUnique($email)!==true){
+    $Messages["email_exist"]="Email already in the database";
 
+ }
 if ($userName==false && $Email==false && $Pwd==false){
         $Messages["errors"]=" cannot submit empty fields";
        }else if (  $Pwd!==$_POST['retypedPwd']){
@@ -47,7 +52,7 @@ if ($userName==false && $Email==false && $Pwd==false){
            $Messages["username_errors"]="user name must be 10 chars long and contains at least one number";
        }
 
-
+        
        if (!empty($Messages)){
         $_SESSION["feedBack"]=$Messages;
         header("Location:/new-admin");

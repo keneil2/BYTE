@@ -1,4 +1,5 @@
 <?php 
+declare(strict_types=1);
 namespace app\controllers;
 
 class AdminDb{
@@ -47,7 +48,6 @@ try{   $con=$this->Dbcon();
   
   $stmt->bindParam(":email",$email);
   $stmt->execute();
-
   if ($stmt->rowCount()> 0){
     $stmt->closeCursor();
     $con=null;
@@ -67,12 +67,16 @@ try{   $con=$this->Dbcon();
 
 public function authenicate(string $username,string $password){
   $con=$this->Dbcon();
-  $query="SELECT * Email FROM adminusers WHERE USERNAME=:username";
+  $query="SELECT * FROM adminusers WHERE USERNAME=:username";
   $stmt=$con->prepare($query);
   $stmt->bindParam("username",$username);
-  $stmt->bindParam("password",$password);
   $stmt->execute();
-  return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+  $result= $stmt->fetch(\PDO::FETCH_ASSOC) ?? false;
+  if (password_verify($password,$result["PWD"])) {
+    return true;
+   }else{
+    return false;
+   }
 }
  
 }

@@ -9,8 +9,9 @@ public  $uri;
     "/home"=> "app/views/homepage.php",
     "/Email_varification"=>"app/views/auth/varification.view.php",
     "/var_Email"=>"app/controllers/varification.contrl.php",
+    "/admin-Page"=> "app/views/admin.view.php",
     "/new-admin"=> "app/views/newadmin.view.php",
-    "/admin-login"=> "app/views/addmin.login.view.php",
+    "/admin-login"=> "app/views/admin.login.view.php",
 
     ];
  function __construct($uri){ // takes current server URI
