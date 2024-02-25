@@ -26,6 +26,7 @@
                 <li><a href="/booking">Reservation</a></li>
                 <li><a href="/updates">News</a></li>
                 <li><a href="/location">Location</a></li>
+                <li><a href="/logout">logout</a></li>
                </ul>
         <button><a href="/table">FIND A TABLE</a></button>
         </div>
