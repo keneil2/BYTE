@@ -13,7 +13,7 @@
    <div class="side-bar"><h1>JT</h1>
    <ul>
     <li><a href="/dashboard">DashBoard</a></li>
-    <li><a href="/orders">Orders/a></li>
+    <li><a href="/orders">Orders</a></li>
     <li><a href="/clients">clients</a></li>
     <li><a href="/Statistics">Statistics</a></li>
     <li><a href="/Finance">Finance</a></li>
@@ -36,18 +36,24 @@
 </nav>
 
 
-
+<section class="adminPanel">
 <div class="quick-display">
    <div class="heading"><h1>ORDERS</h1> <p>Daily</p><p>Monthly</p></div>
    <div class="Order-info">
-   <div class="New-Orders">
-
-   </div>
-   <div class="pending-Orders"></div>
-   <div class="delivered-Orders"></div>
-   </div>
-
+   <div class="Orders"><h3>New orders</h3>
+   <p><span>245</span>impression-20%</p>
 </div>
+   <div class="Orders">
+   <h3>New orders</h3>
+   <p><span>245</span>impression-20%</p>
+   </div>
+   <div class="Orders">
+   <h3>New orders</h3>
+   <p><span>245</span>impression-20%</p>
+   </div>
+   </div> 
+</div>
+</section>
    <script src="https://kit.fontawesome.com/f05da63fd8.js" crossorigin="anonymous"></script>
 </body>
 </html>
