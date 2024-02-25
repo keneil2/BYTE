@@ -25,11 +25,17 @@ nav{
     color:black;
    
 }
+.side-bar ul li img{
+    width:15px;
+    height:15px;
+    margin-right:10px;
+}
+.side-bar ul li:hover{
+    text-decoration: rgb(255, 157, 0) underline;
+}
 .admin-section{
     width:70%;
     display: flex;
-    justify-content: space-around;
-    /* height:fit-content; */
 }
  nav{
     display:flex;
@@ -51,6 +57,16 @@ nav{
 }
 .date{
     margin-top:50px; 
+    margin-right: 500px;
+
+}
+.date img{
+    width:20px;
+    height:20px;
+}
+.date p{
+    display:inline;
+    margin-left:10px;
 }
 .right-nav{
     display: flex;
@@ -74,18 +90,53 @@ nav{
     height:40vh;
     flex-direction: column;
     justify-content: center;
+    /* margin-top:200; */
     /* align-items: center; */
 }
+.admin-table{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    width:60%;
+    margin-left:20%;
+    margin-top:100px;
+}
+table, th, td {
+    border:none;
+    border-top: 1px solid rgb(0, 0, 0,0.4);
+    border-bottom:1px solid rgba(0, 0, 0,0.4); ;
+    border-collapse: collapse;
+    padding:10px 0px;
+    margin:0px 10px;
+  }
+  td{
+  text-align: center;
+
+  }
+  td p{
+    display: inline;
+
+  }
+  td img{
+    width:15px;
+    height: 15px;
+   display: inline-block;
+  }
 .quick-display{
     margin-left: 200px;
-   
 }
 .heading{
     display: flex;
     width:30%;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 200px;
 }
+.heading p{
+  padding:5px;
+  background-color:rgba(213, 213, 213,0.4);
+  border-radius: 5px;
+}
+
 .Order-info{
  display: flex;
  margin-top: 40px;
@@ -93,7 +144,7 @@ nav{
  /* color:white; */
 }
 .Order-info span{
-    border-right:1px solid rgba(23, 248, 252,0.5);
+    border-right:1px solid rgba(0, 0, 0, 0.5);
     margin-right:5px;
     padding: 5px;
 }
@@ -102,5 +153,6 @@ nav{
 }
 .Orders{
     padding:10px 30px;
+    border-radius:10px;
     background-color: rgba(0, 136, 255, 0.3);
 }
