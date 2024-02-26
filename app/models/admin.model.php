@@ -78,5 +78,13 @@ public function authenicate(string $username,string $password){
     return false;
    }
 }
+public function disPlayUsers(){
+  $con=$this->Dbcon();
+  $query="SELECT * FROM adminusers";
+  $stmt=$con->prepare($query);
+  $stmt->execute();
+  $result= $stmt->fetch(\PDO::FETCH_ASSOC) ??["no users added"];
+  return $result;
+}
  
 }

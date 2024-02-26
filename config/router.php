@@ -12,8 +12,8 @@ public  $uri;
     "/admin-Page"=> "app/views/admin.view.php",
     "/new-admin"=> "app/views/newadmin.view.php",
     "/admin-login"=> "app/views/admin.login.view.php",
-    "/logout"=> "app/controllers/logout.contrl.php"
-
+    "/logout"=> "app/controllers/logout.contrl.php",
+    "/manage-Admins"=>"app/views/manage-admin.php"
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  
