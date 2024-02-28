@@ -2,6 +2,10 @@
 require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use ParagonIE\Certainty\RemoteFetch;
+spl_autoload_register(function($class){
+    require_once 'config/session.php';
+});
+Session::Sstart();
 // this page handles errors and user inputs
 require_once "app/../../models/Register.model.php";
 if($_SERVER["REQUEST_METHOD"]=="POST"){

@@ -108,7 +108,7 @@ public  function updateUser(string $username,string $email,$id){
   }
   public function Deleteadmin($id){
     $con=$this->Dbcon();
-    $query= "DELETE adminusers WHERE ID=:id";
+    $query= "DELETE FROM adminusers WHERE ID=:id";
     $stmt=$con->prepare($query);
     $stmt->bindParam("id", $id);
     $stmt->execute();

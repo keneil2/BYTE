@@ -67,7 +67,7 @@ use app\controllers\AdminDb;
         }
         echo "
         <td>
-        <form action='/update-admins'>
+        <form action='/delete-admin'>
         <input type='hidden' name='user_id' value='".$row["ID"]."'>
         <button>delete</button></form>
       <form action='/update-admins'>

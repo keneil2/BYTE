@@ -16,6 +16,7 @@ public  $uri;
     "/manage-Admins"=>"app/views/manage-admin.php",
     "/update-admins"=>"app/views/update.view.php",
     "/update"=>"app/controllers/admin-update.controller.php",
+    "/delete-admin"=>"app/controllers/admin-delete.controller.php",
     "/signup-contrl"=> "app/controllers/signup.controller.php",
     ];
  function __construct($uri){ // takes current server URI
