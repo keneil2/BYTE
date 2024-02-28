@@ -13,7 +13,10 @@ public  $uri;
     "/new-admin"=> "app/views/newadmin.view.php",
     "/admin-login"=> "app/views/admin.login.view.php",
     "/logout"=> "app/controllers/logout.contrl.php",
-    "/manage-Admins"=>"app/views/manage-admin.php"
+    "/manage-Admins"=>"app/views/manage-admin.php",
+    "/update-admins"=>"app/views/update.view.php",
+    "/update"=>"app/controllers/admin-update.controller.php",
+    "/signup-contrl"=> "app/controllers/signup.controller.php",
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  

@@ -87,4 +87,8 @@ public function disPlayUsers(){
   return $result;
 }
  
+public function updateUser(string $username,string $emal){
+  $con=$this->Dbcon();
+  $query="UPDATE ";
+  }
 }

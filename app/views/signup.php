@@ -24,7 +24,7 @@
    <?php $display="SIGN UP AND BOOK A TABLE IN SECONDS";
    require_once "layout/navbar.view.php"; ?>
    <div class="form">
-    <form action="/" method="POST">
+    <form action="/signup-contrl" method="POST">
     <!-- <h2 font-color="red">SIGN UP HERE</h2> -->
     <?php require_once "layout/error.view.php";
     // var_dump( $_SESSION["client_side_Errors"]);

@@ -55,6 +55,7 @@ use app\controllers\AdminDb;
         <?php
          $users=new AdminDb();
          $Userdata=$users->disPlayUsers();
+     setcookie("userId",$Userdata["ID"],time()+1800,"/");
         foreach( $Userdata as $key=>$value ){
             if ($key!=="PWD"){
                 echo"<td>".$value."</td>";
@@ -67,7 +68,8 @@ use app\controllers\AdminDb;
         ?>
         <td>
         <button>delete</button>
-           <button>Update</button>
+      <form action="/update-admins">
+           <button>Update</button></form>
         </td>
     </tr>
 </table>
