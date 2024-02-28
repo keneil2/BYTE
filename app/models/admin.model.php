@@ -46,7 +46,7 @@ try{   $con=$this->Dbcon();
   $query= "SELECT * FROM adminusers WHERE Email=:email";
   $stmt=$con->prepare($query);
   
-  $stmt->bindParam(":email",$email);
+  $stmt->bindParam("email",$email);
   $stmt->execute();
   if ($stmt->rowCount()> 0){
     $stmt->closeCursor();
@@ -83,12 +83,34 @@ public function disPlayUsers(){
   $query="SELECT * FROM adminusers";
   $stmt=$con->prepare($query);
   $stmt->execute();
-  $result= $stmt->fetch(\PDO::FETCH_ASSOC) ??["no users added"];
+  $result= $stmt->fetchAll(\PDO::FETCH_ASSOC) ??["no users added"];
+
   return $result;
 }
- 
-public function updateUser(string $username,string $emal){
+public function selectBYId($id){
   $con=$this->Dbcon();
-  $query="UPDATE ";
+  $query="SELECT * FROM adminusers WHERE ID=:id";
+  $stmt=$con->prepare($query);
+  $stmt->bindParam("id", $id);
+$stmt->execute();
+$result= $stmt->fetch(\PDO::FETCH_ASSOC) ?? 'row does not exist';
+return $result;
+}
+ 
+public  function updateUser(string $username,string $email,$id){
+  $con=$this->Dbcon();
+  $query="UPDATE adminusers SET USERNAME=:username,EMAIL=:email WHERE ID=:id";
+  $stmt=$con->prepare($query);
+  $stmt->bindParam("username",$username);
+  $stmt->bindParam("email",$email);
+  $stmt->bindParam("id",$id);
+  $stmt->execute();
+  }
+  public function Deleteadmin($id){
+    $con=$this->Dbcon();
+    $query= "DELETE adminusers WHERE ID=:id";
+    $stmt=$con->prepare($query);
+    $stmt->bindParam("id", $id);
+    $stmt->execute();
   }
 }

@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
     // a method from the AdminDb class that check for an email
     $checkEmail= new AdminDb();
 
- if($checkEmail-> isEmailUnique($email)!==true){
+ if($checkEmail-> isEmailUnique($_POST["Email"])==true){
     $Messages["email_exist"]="Email already in the database";
 
  }

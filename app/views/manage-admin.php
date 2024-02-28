@@ -51,27 +51,37 @@ use app\controllers\AdminDb;
             <p>Actions</p>
         </th>
     </tr>
-    <tr>
+ 
         <?php
          $users=new AdminDb();
          $Userdata=$users->disPlayUsers();
-     setcookie("userId",$Userdata["ID"],time()+1800,"/");
-        foreach( $Userdata as $key=>$value ){
+        //  var_dump($Userdata);
+        foreach( $Userdata as $row ){
+            echo"<tr>";
+            foreach($row as $key=>$value){
+            $num=0;
             if ($key!=="PWD"){
                 echo"<td>".$value."</td>";
             }
+          
         }
+        echo "
+        <td>
+        <form action='/update-admins'>
+        <input type='hidden' name='user_id' value='".$row["ID"]."'>
+        <button>delete</button></form>
+      <form action='/update-admins'>
+      <input type='hidden' name='user_id' value='".$row["ID"]."'>
+           <button>Update</button>
+           </form>
+        </td>
+    </tr>";
+    }
         if (isset($error)){
             echo "<td>".$error."</td>";
         }
-        
         ?>
-        <td>
-        <button>delete</button>
-      <form action="/update-admins">
-           <button>Update</button></form>
-        </td>
-    </tr>
+        
 </table>
 </div>
 </body>
