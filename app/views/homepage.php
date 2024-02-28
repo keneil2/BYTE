@@ -17,7 +17,7 @@ if (isset($_COOKIE['userName'])){
         setcookie('redirect_from_homepage','you have to login or signup first', time()+12,'/');
         exit;
     }
-require "layout/navbar.view.php";
+require_once "layout/navbar.view.php";
  ?>
  <div class="about-us">
  <center><h5>special Moments</h5>
@@ -40,5 +40,6 @@ require "layout/navbar.view.php";
     </div>
 </div>
  </div>
+ <?php require_once "layout\menu.php";?>
 </body>
 </html>
