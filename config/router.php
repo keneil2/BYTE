@@ -22,8 +22,8 @@ public  $uri;
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  
  }
- function givingresponce($code=404){ // this give http response
-    http_response_code($code); // this function sets the sever response code in this case I only know about 404 which means the page is not found
+ function givingresponce($code=404){ //this give http response
+    http_response_code($code); //this function sets the sever response code in this case I only know about 404 which means the page is not found
     // checking if the file exist
     if(file_exists("app/views/$code.php")){
     require "app/views/$code.php";

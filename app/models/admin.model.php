@@ -15,7 +15,7 @@ class AdminDb{
     $con->exec('USE registration_');
     return $con;
     } catch (\PDOException $e) {
-      echo " connection_Error:". $e->getMessage();
+      echo "connection_Error:check internet";
       exit();
     }
 }
@@ -31,8 +31,7 @@ try{   $con=$this->Dbcon();
        $stmt->bindParam("P",$password);
       return $stmt->execute();
     } catch (\PDOException $e) {
-        echo "ADDING USERS ERROR: ". $e->getMessage();
-        exit();
+      return false;
       }
  }
 
@@ -58,7 +57,7 @@ try{   $con=$this->Dbcon();
     return false;
   }
 }catch (\Exception $e) {
-  echo "Email_check_Error:". $e->getMessage();
+ return false;
 
  }}
 
@@ -66,6 +65,7 @@ try{   $con=$this->Dbcon();
 
 
 public function authenicate(string $username,string $password){
+  try{
   $con=$this->Dbcon();
   $query="SELECT * FROM adminusers WHERE USERNAME=:username";
   $stmt=$con->prepare($query);
@@ -76,18 +76,25 @@ public function authenicate(string $username,string $password){
     return true;
    }else{
     return false;
+   }}catch(\Exception $e){
+    return false;
    }
 }
 public function disPlayUsers(){
+  try{
   $con=$this->Dbcon();
   $query="SELECT * FROM adminusers";
   $stmt=$con->prepare($query);
   $stmt->execute();
   $result= $stmt->fetchAll(\PDO::FETCH_ASSOC) ??["no users added"];
 
-  return $result;
+  return $result;}catch (\Exception $e) 
+  {
+    return false;
+  }
 }
 public function selectBYId($id){
+  try{
   $con=$this->Dbcon();
   $query="SELECT * FROM adminusers WHERE ID=:id";
   $stmt=$con->prepare($query);
@@ -95,9 +102,13 @@ public function selectBYId($id){
 $stmt->execute();
 $result= $stmt->fetch(\PDO::FETCH_ASSOC) ?? 'row does not exist';
 return $result;
+  }catch(\PDOException $e){
+    return false;
+  }
 }
  
 public  function updateUser(string $username,string $email,$id){
+  try{
   $con=$this->Dbcon();
   $query="UPDATE adminusers SET USERNAME=:username,EMAIL=:email WHERE ID=:id";
   $stmt=$con->prepare($query);
@@ -105,12 +116,19 @@ public  function updateUser(string $username,string $email,$id){
   $stmt->bindParam("email",$email);
   $stmt->bindParam("id",$id);
   $stmt->execute();
-  }
+  }catch(\Exception $e){
+    return false;
+   }
+}
   public function Deleteadmin($id){
+    try{
     $con=$this->Dbcon();
     $query= "DELETE FROM adminusers WHERE ID=:id";
     $stmt=$con->prepare($query);
     $stmt->bindParam("id", $id);
     $stmt->execute();
+  }catch(\Exception $e){
+    return false;
   }
+}
 }

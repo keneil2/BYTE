@@ -9,9 +9,9 @@
 <body>
     <nav>
         <div class="nav1">
-            <div class="info"><i class="fa-solid fa-location-dot"> </i>kingstion Jamaica</div>
-            <div class="info"><i class="fa-solid fa-phone"> </i>+1234567890</div>
-            <div class="info"><i class="fa-solid fa-envelope"> </i>@gmail.com</div>
+            <div class="info"><i class="fa-solid fa-location-dot"></i>kingstion Jamaica</div>
+            <div class="info"><i class="fa-solid fa-phone"></i>+1234567890</div>
+            <div class="info"><i class="fa-solid fa-envelope"></i>@gmail.com</div>
             <div class="info">
                 <i class="fa-brands fa-facebook"></i>
                 <i class="fa-brands fa-twitter"></i>

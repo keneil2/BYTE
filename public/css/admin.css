@@ -10,35 +10,40 @@ nav{
     display: flex;  
     justify-content:space-between; 
     width:100%;
-    /* position:fixed;  */
-    /* z-index:-1;  */
 }
+
 .side-bar{
     width: 10%;
     padding:20px;
     border-right:1px solid rgba(213, 213, 213,0.4);
 }
+
 .side-bar ul{
     margin-top: 20px;
 }
+
 .side-bar ul li{
     margin-top:10px;
     list-style:none;
     margin-bottom: 10px;
 }
+
 .side-bar ul li a{
     text-decoration: none;
     color:black;
    
 }
+
 .side-bar ul li img{
     width:15px;
     height:15px;
     margin-right:10px;
 }
+
 .side-bar ul li:hover{
     text-decoration: rgb(255, 157, 0) underline;
 }
+
 .admin-section{
     width:70%;
     display: flex;
@@ -52,58 +57,63 @@ nav{
     outline: none;
     
 }
+
 .search-bar{
     border:1px solid black;
     border-radius:10px;
     height:30px;
-    /* padding:5px; */
+    
 }
+
 .date{
     margin-top:50px; 
     margin-right: 500px;
 
 }
+
 .date img{
     width:20px;
     height:20px;
 }
+
 .date p{
     display:inline;
     margin-left:10px;
 }
+
 .right-nav{
     display: flex;
     justify-content: space-between;
     width:30%;
-    /* margin-top:50px; */
 }
+
 .profile{
     border-radius:50%;
     border: 1px solid black;
     width:30px;
     height:30px;
 }
+
 .profile img{
     width:30px;
     height:30px;
 }
+
 .adminPanel{
     width:100%;
     display: flex;
-    /* height:40vh; */
     flex-direction: column;
     justify-content: center;
-    /* margin-top:200; */
-    /* align-items: center; */
 }
+
 .admin-table{
     display: flex;
-    flex-direction: column;
-    /* align-items: center; */
+    flex-direction:column;
     width:60%;
     margin-left:20%;
     margin-top:100px;
 }
+
 table, th, td {
     border:none;
     border-top: 1px solid rgb(0, 0, 0,0.4);
@@ -112,28 +122,33 @@ table, th, td {
     padding:10px 0px;
     margin:0px 10px;
   }
+
   td{
   text-align: center;
 
   }
+
   td p{
     display: inline;
 
   }
+
   td img{
     width:15px;
     height: 15px;
    display: inline-block;
   }
+
 .quick-display{
     margin-left: 200px;
 }
+
 .heading{
     display: flex;
     width:30%;
     justify-content: space-around;
-    margin-top: 200px;
 }
+
 .heading p{
   padding:5px;
   background-color:rgba(213, 213, 213,0.4);
@@ -144,16 +159,18 @@ table, th, td {
  display: flex;
  margin-top: 40px;
  justify-content: space-around;
- /* color:white; */
 }
+
 .Order-info span{
     border-right:1px solid rgba(0, 0, 0, 0.5);
     margin-right:5px;
-    padding: 5px;
+    padding:5px;
 }
+
 .Order-info p{
     padding:10px;
 }
+
 .Orders{
     padding:10px 30px;
     border-radius:10px;

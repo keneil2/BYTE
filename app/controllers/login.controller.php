@@ -13,6 +13,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }else{
         // setting the cookie to store users name
         setcookie("username", $_POST["username"],time() + 3600, "/");
+        
         try{ // setting an error handler to catch any errors
         $email = htmlspecialchars($_POST["email"]);
         $pwd= htmlspecialchars($_POST["pwd"]);

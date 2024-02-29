@@ -4,6 +4,9 @@ include_once "app/models/admin.model.php";
 
 if ($_SERVER["REQUEST_METHOD"]=="GET"){
    $deleteuser=new AdminDb();
-   $deleteuser->Deleteadmin($_GET["user_id"]);
+   if($deleteuser->Deleteadmin($_GET["user_id"])==false){
+      exit("connection error");
+   }
+   
    header("Location:/manage-Admins");
 }
