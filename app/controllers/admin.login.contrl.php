@@ -25,5 +25,5 @@ if (isset($errors)){
      $_SESSION["Admin_Login_errors"]=$errors;
      var_dump($_SESSION).PHP_EOL;
 }
-header("Location:/admin-Page");
+header("Location:/manage-Admins");
 }

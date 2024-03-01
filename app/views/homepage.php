@@ -24,7 +24,7 @@ require_once "layout/navbar.view.php";
 <h1>ABOUT US<h1></center>
 <div class="items">
     <div class="image">
-        <img src="public\css\img\pexels-jonathan-borba-2983099.jpg" alt="modernfood">
+        <img src="public\css\img\Jamaican-Jerk-Chicken-Recipe-SQ.jpg" alt="tradional jamaican food">
     </div>
     <div class="more">
         <div><h5>Taste tradition</h5></div>
@@ -36,7 +36,7 @@ require_once "layout/navbar.view.php";
         
     </div>
     <div class="image">
-        <img src="public\css\img\pexels-jonathan-borba-2983099.jpg" alt="modernfood">
+        <img src="public\css\img\pexels-jonathan-borba-2983099.jpg" alt="modern food">
     </div>
 </div>
  </div>

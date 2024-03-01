@@ -9,7 +9,7 @@ public  $uri;
     "/home"=> "app/views/homepage.php",
     "/Email_varification"=>"app/views/auth/varification.view.php",
     "/var_Email"=>"app/controllers/var_code.contrl.php",
-    "/admin-Page"=> "app/views/admin.view.php",
+    "/orders"=> "app/views/admin-dashboard.view.php",
     "/new-admin"=> "app/views/newadmin.view.php",
     "/admin-login"=> "app/views/admin.login.view.php",
     "/logout"=> "app/controllers/logout.contrl.php",
@@ -18,6 +18,7 @@ public  $uri;
     "/update"=>"app/controllers/admin-update.controller.php",
     "/delete-admin"=>"app/controllers/admin-delete.controller.php",
     "/signup-contrl"=> "app/controllers/signup.controller.php",
+    "/Categories"=> "app/views/createCategory.view.php",
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  

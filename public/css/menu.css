@@ -17,14 +17,36 @@ img{
   height: fit-content;
   background-color: black;
   color: white;
+  font-size: 1.3rem;
+  text-align: center;
+  padding:10px;
+  border-radius:10px;
+}
+.items{
+  display:flex;
+  font-size: 0.8rem;
+  margin-bottom:30px;
+  margin-top:30px;
+}
+.cartdetails img{
+ height:60px;
+ width:60px;
+ background-color:lightgrey;
+ padding:15px;
+ border-radius:10px;
+ margin-right:5px;
+}
+.cartdetails{
+  padding: 10px 50px;
 }
 .orderSummary{
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: rgb(142, 141, 141);
-  /* padding: 10px 50px; */
+  background-color: rgb(255, 255, 255);
   height: fit-content;
+  border-radius:10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0,0.5);
 }
 /* .menuSection{
   
@@ -38,4 +60,43 @@ img{
   grid-template-columns:repeat(3,300px);
   grid-template-rows: repeat(3,300px);
   gap:50px;
+}
+.cartdetails input{
+  margin-bottom:20px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  border-top: 1px solid rgb(0, 0, 0);
+}
+.cartdetails input[type="radio"]{
+ accent-color: orangered;
+ width:20px;
+ height:20px;
+}
+.cartdetails p{
+  margin-bottom: 10px;
+}
+.cartdetails button{
+  padding:10px 50px;
+  border:none;
+  background-color:rgb(23, 139, 0);
+  font-size: larger;
+  color:white;
+  border-radius:5px;
+}
+.cartdetails button:hover{
+  background-color:rgb(240, 106, 57);
+}
+
+.first-radio{
+  margin-right:10px;
+}
+/* label{
+  margin-right:10px;
+} */
+.inputs{
+ border-top:1px dotted rgba(0, 0, 0,0.5);
+ border-bottom:1px dotted rgba(0, 0, 0,0.5);
+ padding:5px;
+}
+#label2{
+  margin-right:15px;
 }

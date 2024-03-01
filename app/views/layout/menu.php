@@ -93,10 +93,12 @@
 <div class="orderSummary">
 <div class="title">Order Summary</div>
 <div class="cartdetails">
-<img><p>your cart is empty</p>
+<div class="items"><img src="public/css/img/shopping-cart.png" alt="cart-icon"><p>your cart is empty</p></div>
 <form action="/orders">
-    <label for="delivery">Delivery</label><input type="radio" name="delivery" id="">
-    <label for="Pickup">Pickup</label><input type="radio" name="Pickup" id="">
+    <div class="input"><label for="delivery">Delivery</label>  <input type="radio" name="order-type" class="first-radio">$10.00</div>
+     <div class="inputs">    <label for="Pickup" id="label2">Pickup</label><input type="radio" name="order-type" id="">     $5.00</div>
+    <p>Total:</p>
+    <button>Order Now</button>
 </form>
 </div>
 </div>
