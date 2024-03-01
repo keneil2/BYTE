@@ -3,7 +3,39 @@
   padding:0;
   box-sizing:border-box;
 }
+.container{
+  display:flex;
+  margin: 0.5em;
+  position: relative;
+}
 img{
-    width: 100px;
-    height:100px;
+  object-fit:cover;
+    width: 200px;
+    height:200px;
+}
+.title{
+  height: fit-content;
+  background-color: black;
+  color: white;
+}
+.orderSummary{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: rgb(142, 141, 141);
+  /* padding: 10px 50px; */
+  height: fit-content;
+}
+/* .menuSection{
+  
+  display:flex;
+  justify-content: center;
+  align-items: center; 
+} */
+.menuSection{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(3,300px);
+  grid-template-rows: repeat(3,300px);
+  gap:50px;
 }

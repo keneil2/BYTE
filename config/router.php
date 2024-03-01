@@ -8,7 +8,7 @@ public  $uri;
     "/login"=> "app/views/login.php",
     "/home"=> "app/views/homepage.php",
     "/Email_varification"=>"app/views/auth/varification.view.php",
-    "/var_Email"=>"app/controllers/varification.contrl.php",
+    "/var_Email"=>"app/controllers/var_code.contrl.php",
     "/admin-Page"=> "app/views/admin.view.php",
     "/new-admin"=> "app/views/newadmin.view.php",
     "/admin-login"=> "app/views/admin.login.view.php",
