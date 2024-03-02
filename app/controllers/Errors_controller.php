@@ -1,5 +1,5 @@
 <?php 
-namespace app\controller;
+namespace app\controllers;
 require_once "app/../../models/Register.model.php";
  class Error{
      public static function sanitizeInput($string){
@@ -17,7 +17,7 @@ require_once "app/../../models/Register.model.php";
          $errors["input_error"]="please fill out all fields!!";
         }
         if(!empty($_POST["Email"]) && isset( $_POST["Email"])){ 
-        var_dump(\Register::isEmailExist($email));
+        // var_dump(\Register::isEmailExist($email));
         if(\Register::isEmailExist($email)==true){
        $errors["email_exixt_in_DB"]="email already exist <a href='/login'>Go To login Page<a>";
         }}
@@ -29,4 +29,23 @@ require_once "app/../../models/Register.model.php";
             exit(); 
         }
      }
- }
+     public static function errors($InputMETHOD,$input1,$input2,$input3){
+        $errors=[];
+        if(empty($InputMETHOD["$input1"]) || empty( $InputMETHOD["$input2"]) || empty($InputMETHOD["$input3"])){
+            $errors["input_error"]="please fill out all fields!!";
+           }
+        if ($input1=="Email" || $input2=="Email"|| $input3="Email"){
+        // var_dump(\Register::isEmailExist($email));
+        if(\Register::isEmailExist($InputMETHOD["Email"])==true){
+            $errors["email_exixt_in_DB"]="email already exist <a href='/login'>Go To login Page<a>";
+             }
+        }
+        if(!empty($errors)){
+            $_SESSION["client_side_Errors"]=$errors; 
+            header("Location:/signup");
+            echo "set";
+            exit(); 
+        }
+     }
+     }
+ 

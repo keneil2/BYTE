@@ -1,5 +1,5 @@
 <?php 
-use app\controllers\AdminDb;
+use app\models\AdminDb;
 include_once "app/models/admin.model.php";
 
 if ($_SERVER["REQUEST_METHOD"]=="GET"){

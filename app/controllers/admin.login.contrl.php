@@ -1,6 +1,6 @@
 <?php
 require_once "../models/admin.model.php";
-use app\controllers\AdminDb;
+use app\models\AdminDb;
 require_once "../../config/session.php";
 Session::Sstart();
 function sanitizeInput($input) {

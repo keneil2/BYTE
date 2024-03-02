@@ -19,6 +19,7 @@ public  $uri;
     "/delete-admin"=>"app/controllers/admin-delete.controller.php",
     "/signup-contrl"=> "app/controllers/signup.controller.php",
     "/Categories"=> "app/views/createCategory.view.php",
+    "/new-category"=>"app/views/new-category.view.php",
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  

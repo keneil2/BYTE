@@ -4,7 +4,7 @@ require_once "Errors_controller.php";
 require_once "app/../../models/Register.model.php";
 require_once "varification.contrl.php";
 use varEmail\Varification_controller;
-use app\controller\Error;
+use app\controllers\Error;
 require_once "config/session.php";
 \Session::Sstart();
  // this function handles errors and store them in a session to be displayed 

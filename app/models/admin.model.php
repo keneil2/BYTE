@@ -1,6 +1,6 @@
 <?php 
 declare(strict_types=1);
-namespace app\controllers;
+namespace app\models;
 
 class AdminDb{
   private $hostname="localhost";
@@ -129,6 +129,17 @@ public  function updateUser(string $username,string $email,$id){
     $stmt->execute();
   }catch(\Exception $e){
     return false;
+  }
+}
+public  function createCategory(string $category,string $feature){
+  try{
+    $con=$this->Dbcon();
+    $query="INSERT INTO CATEGORIES(CATEGORY_NAME,to_feature) VALUES(:Category,:Feature)";
+    $stmt=$con->prepare($query);
+   $stmt->bindParam("Category",$category);
+   $stmt->bindParam("Feature",$feature);
+  }catch(\Exception $e){
+    
   }
 }
 }
