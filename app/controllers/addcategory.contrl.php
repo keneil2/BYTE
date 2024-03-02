@@ -9,12 +9,17 @@ spl_autoload_register(function($class){
 $error=[];
  function handleinput(){
     if($_SERVER["REQUEST_METHOD"]=="GET"){ 
-        Error::handleAllError($_GET,"category_name","toFeature",);
+
+        Error::handleAllError($_GET,["category_name","toFeature"],"categories","CATEGORY_NAME",$_GET["category_name"]);
+
         if (isset($_GET["category_name"]) && isset($_GET["toFeature"])  ){
-        $categoryname=$_GET["category_name"];
-        $isFetaured=$_GET["toFeature"];
+
+        $categoryname=  Error::sanitizeInput($_GET["category_name"]);
+        $isFetaured=  Error::sanitizeInput($_GET["toFeature"]);
         $createCategory= new AdminDb();
-        $createCategory->createCategory( $categoryname,$isFetaured);
+
+        $createCategory->createCategory( $categoryname,$isFetaured,);
+
 }
 }else{
     $_SESSION["requestMethod_error"]="invalid input Method";

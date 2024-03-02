@@ -1,6 +1,9 @@
 <?php 
 namespace app\controllers;
-require_once "app/../../models/Register.model.php";
+use app\models\AdminDb;
+spl_autoload_register(function ($class) {
+    require_once "app/models/admin.model.php";
+});
  class Error{
      public static function sanitizeInput($string){
         $sanitizedData=filter_var($string,FILTER_SANITIZE_SPECIAL_CHARS);
@@ -31,29 +34,31 @@ require_once "app/../../models/Register.model.php";
         if(!empty($errors)){
             $_SESSION["client_side_Errors"]=$errors; 
             header("Location:/signup");
-            var_dump($_SESSION["client_side_Errors"]); 
+            //var_dump($_SESSION["client_side_Errors"]);
             echo "set";
             exit(); 
         }else{
             echo "not set";
         }
      }
-     public static function handleAllError($InputMETHOD,$input1,$input2){
+     public static function handleAllError($InputMETHOD,$feilds,$tablename=null,$fieldname=null,$value=null,$URLPATH="/new-category"){
         $errors=[];
-        if(empty($InputMETHOD[$input1]) || empty( $InputMETHOD[$input2])){
+        foreach($feilds as $feild){
+        if(!isset($InputMETHOD[$feild]) || empty( $InputMETHOD[$feild])){
             $errors["input_error"]="please fill out all fields!!";
-           }
-        if ($input1=="Email" || $input2=="Email"){
-        // var_dump(\Register::isEmailExist($email));
-        if(\Register::isEmailExist($InputMETHOD["Email"])==true){
-            $errors["email_exixt_in_DB"]="email already exist <a href='/login'>Go To login Page<a>";
-             }
-        }
+           }}
+           $createPrimaryKey= new AdminDb();
+
+
+    if($tablename!==null && $fieldname!==null && $value!==null){
+        if($createPrimaryKey->Primarykey($tablename, $fieldname,$value)){
+            $errors[$fieldname."_error"]="fieldname already exist";
+        }}
         if(!empty($errors)){
             $_SESSION["admin_category_errors"]=$errors; 
-            header("Location:/new-category");
+            header("Location:$URLPATH");
             echo "set";
-            exit(); 
+            exit();
         }else{
             echo "not set";
         }

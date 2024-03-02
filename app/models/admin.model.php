@@ -140,7 +140,37 @@ public  function createCategory(string $category,string $feature){
    $stmt->bindParam("Feature",$feature);
    $stmt->execute();
   }catch(\Exception $e){
-    
+    echo"errors:".$e->getMessage();
   }
 }
+// basically checks if a field is already entered
+public function Primarykey(string $tablename, $fieldname,$value){
+$con=$this->Dbcon();
+$query="SELECT $fieldname FROM $tablename WHERE $fieldname=:val";
+$stmt=$con->prepare($query);
+$stmt->bindParam("val",$value);
+$stmt->execute();
+$result=$stmt->fetch(\PDO::FETCH_ASSOC);
+// return $result;
+if($result["CATEGORY_NAME"]==$value){
+  return true;
+}else {
+return false;
+}
+}
+   public function insertdata(){
+    try{
+      $con=$this->Dbcon();
+      $query="INSERT INTO Foods () VALUE()";
+    }catch(\Exception $e){
+     
+   }
+  }
+public  function updatefieldtring ($category,string $feature){
+
+    }
+    public function deletefield(string $category){
+
+    }
+
 }
