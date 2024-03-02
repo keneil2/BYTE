@@ -8,7 +8,7 @@ spl_autoload_register(function($class){
 
 $error=[];
  function handleinput(){
-    if($_SERVER["REQUEST_METHOD"]=="GET"){
+    if($_SERVER["REQUEST_METHOD"]=="GET"){ 
         Error::handleAllError($_GET,"category_name","toFeature",);
         if (isset($_GET["category_name"]) && isset($_GET["toFeature"])  ){
         $categoryname=$_GET["category_name"];

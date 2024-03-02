@@ -20,7 +20,9 @@ public  $uri;
     "/signup-contrl"=> "app/controllers/signup.controller.php",
     "/Categories"=> "app/views/createCategory.view.php",
     "/new-category"=>"app/views/new-category.view.php",
-    "/add-category"=>"app\controllers\addcategory.contrl.php"
+    "/add-category"=>"app\controllers\addcategory.contrl.php",
+    "/create_Content"=> "app/views/createContert.view.php",
+    "/add-Content"=>"app/controllers/Errors_controller.php"
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  
@@ -29,10 +31,10 @@ public  $uri;
     http_response_code($code); //this function sets the sever response code in this case I only know about 404 which means the page is not found
     // checking if the file exist
     if(file_exists("app/views/$code.php")){
-    require "app/views/$code.php";
+    require_once "app/views/$code.php";
     return $this;
 }else{
-        require "app/views/nofile.php";// requiring a view with that shows that the page cant be found
+        require_once "app/views/nofile.php";// requiring a view with that shows that the page cant be found
         return $this; // basicall returning the object
     }
  }
@@ -44,7 +46,7 @@ $this->uri=$new_uri[0];
    
 }
  if (array_key_exists($this->uri,$this->routes)){
-    require $this->routes[$this->uri]; // what happening here? remember uri key which is like the index of the array
+    require_once $this->routes[$this->uri]; // what happening here? remember uri key which is like the index of the array
  }else{
     $this->givingresponce(); // giving the response if the $code.php exist 
  }}

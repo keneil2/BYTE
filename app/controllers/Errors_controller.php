@@ -10,6 +10,13 @@ require_once "app/../../models/Register.model.php";
         $valdateEmail=filter_var($email,FILTER_VALIDATE_EMAIL);
         return $valdateEmail;
        }
+        public static function isRequestMethod($method){
+            if($_SERVER["REQUEST_METHOD"]==$method){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
     public static function logErrors($email){
         $errors=[];
@@ -24,9 +31,11 @@ require_once "app/../../models/Register.model.php";
         if(!empty($errors)){
             $_SESSION["client_side_Errors"]=$errors; 
             header("Location:/signup");
-            // var_dump($_SESSION["client_side_Errors"]); 
+            var_dump($_SESSION["client_side_Errors"]); 
             echo "set";
             exit(); 
+        }else{
+            echo "not set";
         }
      }
      public static function handleAllError($InputMETHOD,$input1,$input2){

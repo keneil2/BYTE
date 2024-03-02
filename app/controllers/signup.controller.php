@@ -5,10 +5,12 @@ require_once "app/../../models/Register.model.php";
 require_once "varification.contrl.php";
 use varEmail\Varification_controller;
 use app\controllers\Error;
-require_once "config/session.php";
-\Session::Sstart();
+// require_once "config/session.php";
+// \Session::Sstart();
  // this function handles errors and store them in a session to be displayed 
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
+    Error::logErrors($_POST["Email"]);
      // generates verification code
     try{
         // checking the input fields
@@ -16,7 +18,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $userName=Error::sanitizeInput(trim($_POST["userName"]));
         $password=Error::sanitizeInput($_POST["Password"]);
         $email=Error::validateEmail(trim($_POST["Email"]));
-        Error::logErrors($email);
 
         // this is the email that I will be check in the varification controller file
         setcookie("var_email",$email,time()+3000,'/');

@@ -1,8 +1,8 @@
 <?php
 require_once "../models/admin.model.php";
 use app\models\AdminDb;
-require_once "../../config/session.php";
-Session::Sstart();
+// require_once "../../config/session.php";
+// Session::Sstart();
 function sanitizeInput($input) {
     if (isset($input)) {
     $input=filter_var($input, FILTER_SANITIZE_STRING);
