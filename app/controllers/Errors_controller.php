@@ -29,23 +29,27 @@ require_once "app/../../models/Register.model.php";
             exit(); 
         }
      }
-     public static function errors($InputMETHOD,$input1,$input2,$input3){
+     public static function handleAllError($InputMETHOD,$input1,$input2){
         $errors=[];
-        if(empty($InputMETHOD["$input1"]) || empty( $InputMETHOD["$input2"]) || empty($InputMETHOD["$input3"])){
+        if(empty($InputMETHOD[$input1]) || empty( $InputMETHOD[$input2])){
             $errors["input_error"]="please fill out all fields!!";
            }
-        if ($input1=="Email" || $input2=="Email"|| $input3="Email"){
+        if ($input1=="Email" || $input2=="Email"){
         // var_dump(\Register::isEmailExist($email));
         if(\Register::isEmailExist($InputMETHOD["Email"])==true){
             $errors["email_exixt_in_DB"]="email already exist <a href='/login'>Go To login Page<a>";
              }
         }
         if(!empty($errors)){
-            $_SESSION["client_side_Errors"]=$errors; 
-            header("Location:/signup");
+            $_SESSION["admin_category_errors"]=$errors; 
+            header("Location:/new-category");
             echo "set";
             exit(); 
+        }else{
+            echo "not set";
         }
+
      }
      }
+
  

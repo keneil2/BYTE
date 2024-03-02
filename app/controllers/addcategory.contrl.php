@@ -1,28 +1,25 @@
 <?php
 use app\models\AdminDb;
-require "../models/admin.model.php";
+ use app\controllers\Error;
+require_once "app/models/admin.model.php";
 spl_autoload_register(function($class){
     require "$class"."s_controller.php";
 });
 
 $error=[];
- function handleinput($featured){
-    if($_SERVER["REQUEST_METHOD"]=="POST"){
-        if (isset($_POST["category_name"]) && isset($_POST["toFeature"])  ){
-        $categoryname=$_POST["category_name"];
-        $isFetaured=$_POST["toFeature"];
-}else{
-
+ function handleinput(){
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+        Error::handleAllError($_GET,"category_name","toFeature",);
+        if (isset($_GET["category_name"]) && isset($_GET["toFeature"])  ){
+        $categoryname=$_GET["category_name"];
+        $isFetaured=$_GET["toFeature"];
+        $createCategory= new AdminDb();
+        $createCategory->createCategory( $categoryname,$isFetaured);
 }
 }else{
-    exit("");
+    $_SESSION["requestMethod_error"]="invalid input Method";
+    header("Location:/new-category");
+    exit("invalid input Method");
 }
 }
-class Addcategory_controller{
-    private $category;
-    private $isFeatured;
-    public function __set($name,$value){
-        $this->category= $name;
-        $this->isFeatured=$value;
-    }
-}
+handleinput();

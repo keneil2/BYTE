@@ -20,6 +20,7 @@ public  $uri;
     "/signup-contrl"=> "app/controllers/signup.controller.php",
     "/Categories"=> "app/views/createCategory.view.php",
     "/new-category"=>"app/views/new-category.view.php",
+    "/add-category"=>"app\controllers\addcategory.contrl.php"
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  

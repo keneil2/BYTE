@@ -134,10 +134,11 @@ public  function updateUser(string $username,string $email,$id){
 public  function createCategory(string $category,string $feature){
   try{
     $con=$this->Dbcon();
-    $query="INSERT INTO CATEGORIES(CATEGORY_NAME,to_feature) VALUES(:Category,:Feature)";
+    $query="INSERT INTO categories(CATEGORY_NAME,to_feature) VALUES(:Category,:Feature)";
     $stmt=$con->prepare($query);
    $stmt->bindParam("Category",$category);
    $stmt->bindParam("Feature",$feature);
+   $stmt->execute();
   }catch(\Exception $e){
     
   }
