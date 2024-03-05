@@ -5,6 +5,7 @@ spl_autoload_register(function ($class) {
     require_once "app/models/admin.model.php";
 });
  class Error{
+    
      public static function sanitizeInput($string){
         $sanitizedData=filter_var($string,FILTER_SANITIZE_SPECIAL_CHARS);
         return $sanitizedData;
@@ -47,6 +48,7 @@ spl_autoload_register(function ($class) {
         if(!isset($InputMETHOD[$feild]) || empty( $InputMETHOD[$feild])){
             $errors["input_error"]="please fill out all fields!!";
            }}
+
            $createPrimaryKey= new AdminDb();
 
 
@@ -64,6 +66,25 @@ spl_autoload_register(function ($class) {
         }
 
      }
+     public static function logFileErrors(){
+        $error=[];
+        if($_FILES["pic"]["error"]!==0){
+          $errorCode=(int)$_FILES["pic"]["error"];
+            $error["file_error"]=match( $errorCode){
+            1 =>"FILE exceeds 40mb",
+            2 =>"unknow2",
+            3=>"there was an error uploading please try again",
+            4=>"No file was uploaded",
+            5=>"unknown Error_err_CODE5 please try again",
+            6=>"unknown error_CODE6 please try again",
+            7=>"Error_CODE 7 please try again"
+            };
+       
+        }
+        if(!empty($error)){
+            $_SESSION["file_error"]=$error;
+        }
+    }
      }
 
  

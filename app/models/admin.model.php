@@ -158,10 +158,17 @@ if($result["CATEGORY_NAME"]==$value){
 return false;
 }
 }
-   public function insertdata(){
+   public function insertdata(string $table,array $columnNames,array $values){
     try{
       $con=$this->Dbcon();
-      $query="INSERT INTO Foods () VALUE()";
+      $query="INSERT INTO $table(".implode(",",$columnNames).") VALUE(".trim(str_repeat("?,",count($columnNames))).",)";
+      $stmt=$con->prepare($query);
+      
+        foreach($values as $Value){
+      $stmt->bindParam("?",$Value);
+    }
+    $stmt->execute();
+
     }catch(\Exception $e){
      
    }
@@ -171,6 +178,9 @@ public  function updatefieldtring ($category,string $feature){
     }
     public function deletefield(string $category){
 
+    }
+    public function insertImage(){
+      $con=
     }
 
 }
