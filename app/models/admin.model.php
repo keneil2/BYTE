@@ -161,16 +161,16 @@ return false;
    public function insertdata(string $table,array $columnNames,array $values){
     try{
       $con=$this->Dbcon();
-      $query="INSERT INTO $table(".implode(",",$columnNames).") VALUE(".trim(str_repeat("?,",count($columnNames))).",)";
+      $query="INSERT INTO $table(".implode(",",$columnNames).") VALUES(".trim(str_repeat("?,",count($columnNames))).")";
       $stmt=$con->prepare($query);
       
-        foreach($values as $Value){
-      $stmt->bindParam("?",$Value);
+        foreach($values as $postion=>$Value){
+      $stmt->bindParam($postion + 1,$Value);
     }
     $stmt->execute();
 
     }catch(\Exception $e){
-     
+     $_SESSION["content_db_Error"]=$e->getMessage();
    }
   }
 public  function updatefieldtring ($category,string $feature){
