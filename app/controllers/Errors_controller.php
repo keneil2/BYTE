@@ -21,7 +21,7 @@ spl_autoload_register(function ($class) {
                 return false;
             }
         }
-
+    //logs errors to in session
     public static function logErrors($email){
         $errors=[];
         if(empty($_POST["userName"]) || empty( $_POST["Password"]) || empty($_POST["Email"])){
@@ -84,6 +84,10 @@ spl_autoload_register(function ($class) {
         if(!empty($error)){
             $_SESSION["file_error"]=$error;
         }
+    }
+    // this is used to send errors displayed on the page to a text file;
+    public function Logerror(){
+
     }
      }
 

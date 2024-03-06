@@ -179,8 +179,5 @@ public  function updatefieldtring ($category,string $feature){
     public function deletefield(string $category){
 
     }
-    public function insertImage(){
-      $con=
+    
     }
-
-}
