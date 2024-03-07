@@ -18,8 +18,7 @@
 
 
 <div class="container">
-    <?php require "layout/login.error.view.php";
-    var_dump ($_SESSION["Login_status"]);?>
+    <?php require "layout/login.error.view.php";?>
     <form action="../app/controllers\login.controller.php" method="POST">
    <label for="username">Username</label><br>
    <input type="text" placeholder="please enter you useranme" name="username"><br>

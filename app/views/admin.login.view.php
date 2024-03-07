@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+    <?php  require "layout/login.error.view.php";
+    ?>
     <form action="app/controllers/admin.login.contrl.php" method="POST">
         <input type="text" placeholder="enter username" name="userName"><br>
         <input type="text" placeholder="enter Passowrd" name="pwd"><br>

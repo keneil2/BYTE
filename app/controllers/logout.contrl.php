@@ -11,7 +11,7 @@ foreach ($cookies as $name => $value) {
     setcookie($name, '', time() - 3600, '/');
     unset($_COOKIE[$name]); // Optionally, unset the cookie variable from the $_COOKIE array
 }
-//    header("Location:/login");
+   header("Location:/login");
 }else{
     header("Location:/login");
 }
