@@ -21,9 +21,13 @@ $authenUser= new AdminDb();
 // checking password
 if (!empty($_POST["userName"]) || !empty($_POST["pwd"])) {
  $results=$authenUser->authenicate($userName,$Pwd) ?? "error!!";
- if ($results!==true){
+ if ($results==false){
     $errors["userName_error"]="Password or username incorrect";
     
+ }else{
+    setcookie("login_status",true,time()+3600,"/");
+header("Location:/manage-Admins");
+exit;
  }}
 if (isset($errors)){
      $_SESSION["Admin_Login_errors"]=$errors;
@@ -31,6 +35,5 @@ if (isset($errors)){
      header("Location:/admin-login");
      exit;
 }
-setcookie("login_status",true,time()+3600,"/");
-header("Location:/manage-Admins");
+
 }

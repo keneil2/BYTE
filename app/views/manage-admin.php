@@ -58,7 +58,7 @@ use app\models\AdminDb;
     }
 
 <?php
-if(!isset($_COOKIE["login_status"])){
+if(empty($_COOKIE["login_status"])){
      header("Location:/admin-login");
     $_SESSION[""]="";
  }?>

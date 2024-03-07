@@ -26,5 +26,6 @@ if(isset($_SESSION["Admin_Login_errors"])){
    foreach($_SESSION["Admin_Login_errors"] as $error){
        echo $error;
    }
+   unset($_SESSION["Admin_Login_errors"]);
 }
 

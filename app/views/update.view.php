@@ -2,7 +2,7 @@
 spl_autoload_register(function ($class) {
     require_once "app/models/admin.model.php";
 });
- use app\controllers\AdminDb
+ use app\models\AdminDb;
 ?>  
 <!DOCTYPE html>
 <html lang="en">
