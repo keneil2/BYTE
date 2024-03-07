@@ -10,6 +10,7 @@ function sanitizeInput($input) {
 }}
 
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
+# just logging errors here
 $errors=[];
 $userName=sanitizeInput($_POST["userName"]);
 $Pwd=sanitizeInput($_POST["pwd"]);
@@ -17,13 +18,17 @@ if (!isset($_POST["userName"]) && !isset($_POST["pwd"])) {
     $errors["userName_error"]="fileds cannot be empty";
 }
 $authenUser= new AdminDb();
+// checking password
  $results=$authenUser->authenicate($userName,$Pwd) ?? "error!!";
  if ($results!==true){
     $errors["userName_error"]="Password or username incorrect";
+    
  }
 if (isset($errors)){
      $_SESSION["Admin_Login_errors"]=$errors;
-     var_dump($_SESSION).PHP_EOL;
+     header("Location:/admin-login");
+     exit;
 }
+setcookie("login_status",true,time()+3600,"/");
 header("Location:/manage-Admins");
 }

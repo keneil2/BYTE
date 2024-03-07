@@ -57,7 +57,11 @@ use app\models\AdminDb;
         
     }
 
-
+<?php
+if(!isset($_COOKIE["login_status"])){
+     header("Location:/admin-login");
+    $_SESSION[""]="";
+ }?>
 </style>
 <form action="/new-admin"><input class="add-button" type="submit" value="Add New User"></form>
 <div class="table">

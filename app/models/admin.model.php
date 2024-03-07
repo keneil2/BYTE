@@ -72,6 +72,9 @@ public function authenicate(string $username,string $password){
   $stmt->bindParam("username",$username);
   $stmt->execute();
   $result= $stmt->fetch(\PDO::FETCH_ASSOC) ?? false;
+  if($result==false){
+    return false;
+  }
   if (password_verify($password,$result["PWD"])) {
     return true;
    }else{
