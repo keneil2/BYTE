@@ -29,3 +29,12 @@ if(isset($_SESSION["Admin_Login_errors"])){
    unset($_SESSION["Admin_Login_errors"]);
 }
 
+
+if(isset($_SESSION["admin_category_errors"])){
+    foreach($_SESSION["admin_category_errors"] as $error){
+        echo $error;
+    }
+    unset($_SESSION["admin_category_errors"] );
+ }
+ 
+

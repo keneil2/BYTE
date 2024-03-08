@@ -12,22 +12,27 @@ spl_autoload_register(function ($class) {
     <title>Document</title>
 </head>
 <body>
+    <?php  
+    require_once "layout/login.error.view.php";
+    ?>
     <form action="/update" method="POST">
       <?php if($_SERVER["REQUEST_METHOD"]=="GET"){
+        if(isset($_GET["user_id"])){
         $getinput=new AdminDb();
-        $result=$getinput->selectBYId($_GET["user_id"]);
-        echo "<input type='hidden' name=id value=".$_GET["user_id"].">";
-        foreach ($result as $key => $value) {
-            if ($key=="USERNAME"){
-                echo "<label>Username</label><br><input type='text'name='usename' value='$value'> <br>";
-            }
-            if ($key== "EMAIL"){
-                echo "<label>Email</label><br><input type='text'name='email' value='$value'><br><input type='submit'>";
-            }
-        }
-      }
+        $id=$_GET["user_id"];
+        $result=$getinput->selectBYId($id)?? "empty";
+        echo "<input type='hidden' name=id value=".$id.">";
+      }}
         ?>
+        <label>Username</label><br><input type='text'name='usename' value=<?php  if(isset($result)){echo $result["USERNAME"];}?>> <br>
+        <label>Email</label><br><input type='text'name='email' value=<?php  if(isset($result)){echo $result['EMAIL'];}?>><br>
+        <input type='submit' value="Update user">
     </form>
+    <?php 
+    if(isset($_SESSION["update_admin_message"])){
+    echo $_SESSION["update_admin_message"];
+    unset($_SESSION["update_admin_message"]);}
+    ?>
 
 </body>
 </html>

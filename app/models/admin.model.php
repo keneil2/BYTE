@@ -156,9 +156,9 @@ $stmt->execute();
 $result=$stmt->fetch(\PDO::FETCH_ASSOC);
 // return $result;
 if($result["CATEGORY_NAME"]==$value){
-  return true;
+  return false;
 }else {
-return false;
+return true;
 }
 }
    public function insertdata(string $table,array $columnNames,array $values){

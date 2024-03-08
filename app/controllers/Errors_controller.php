@@ -42,10 +42,10 @@ spl_autoload_register(function ($class) {
             echo "not set";
         }
      }
-     public static function handleAllError($InputMETHOD,$feilds,$tablename=null,$fieldname=null,$value=null,$URLPATH="/new-category"){
+     public static function handleAllError($InputMETHOD,array|string $feilds,$tablename=null,$fieldname=null,$value=null,$URLPATH="/new-category"){
         $errors=[];
         foreach($feilds as $feild){
-        if(!isset($InputMETHOD[$feild]) || empty( $InputMETHOD[$feild])){
+        if( empty($InputMETHOD[$feild])){
             $errors["input_error"]="please fill out all fields!!";
            }}
 
@@ -59,7 +59,6 @@ spl_autoload_register(function ($class) {
         if(!empty($errors)){
             $_SESSION["admin_category_errors"]=$errors; 
             header("Location:$URLPATH");
-            echo "set";
             exit();
         }else{
             echo "not set";

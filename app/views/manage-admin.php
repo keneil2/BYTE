@@ -102,7 +102,7 @@ if(empty($_COOKIE["login_status"])){
         <form action='/delete-admin'>
         <input type='hidden' name='user_id' value='".$row["ID"]."'>
         <button>delete</button></form>
-      <form action='/update-admins'>
+      <form action='/update-admins' method='GET'>
       <input type='hidden' name='user_id' value='".$row["ID"]."'>
            <button>Update</button>
            </form>
