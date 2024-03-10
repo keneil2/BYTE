@@ -15,12 +15,13 @@ class file extends AdminDb implements FileUploader{
     
 
     public static function checkFileType($fieldname){
-        $filetype=$fieldname;
+        // $filetype=$fieldname;
         $finfo=new finfo(FILEINFO_MIME_TYPE);
-        $fmime=$finfo->file($filetype);
+        $fmime=$finfo->file($fieldname);
         $allowedFile=["image/png","image/jpeg"];
         if(!in_array($fmime,$allowedFile)){
             $_SESSION["wrong_file_Type"]="incorrect file format";
+            header("Location:/create_Content");
             exit();
         }
     }

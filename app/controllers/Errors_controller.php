@@ -45,7 +45,7 @@ spl_autoload_register(function ($class) {
      public static function handleAllError($InputMETHOD,array|string $feilds,$tablename=null,$fieldname=null,$value=null,$URLPATH="/new-category"){
         $errors=[];
         foreach($feilds as $feild){
-        if( empty($InputMETHOD[$feild])){
+        if( empty($InputMETHOD[$feild]) || !isset($InputMETHOD[$feild])){
             $errors["input_error"]="please fill out all fields!!";
            }}
 
@@ -70,18 +70,19 @@ spl_autoload_register(function ($class) {
         if($_FILES["pic"]["error"]!==0){
           $errorCode=(int)$_FILES["pic"]["error"];
             $error["file_error"]=match( $errorCode){
-            1 =>"FILE exceeds 40mb",
-            2 =>"unknow2",
-            3=>"there was an error uploading please try again",
-            4=>"No file was uploaded",
-            5=>"unknown Error_err_CODE5 please try again",
-            6=>"unknown error_CODE6 please try again",
-            7=>"Error_CODE 7 please try again"
+                1 => "FILE exceeds 40mb",
+                2 => "Unknown Error 2",
+                3 => "There was an error uploading. Please try again.",
+                4 => "No file was uploaded.",
+                5 => "Unknown Error_err_CODE5. Please try again.",
+                6 => "Unknown error_CODE6. Please try again.",
+                7 => "Error_CODE 7. Please try again."
             };
        
         }
         if(!empty($error)){
             $_SESSION["file_error"]=$error;
+            header("Location:/create_Content");
         }
     }
     // this is used to send errors displayed on the page to a text file;

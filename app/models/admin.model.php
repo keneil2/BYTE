@@ -190,9 +190,8 @@ class AdminDb
       $con = $this->Dbcon();
       $query = "INSERT INTO $this->tablename (" . implode(",", $this->columnNames) . ") VALUES (" . trim(str_repeat("?,", count($this->columnNames)), ',') . ")";
       $stmt = $con->prepare($query);
-
       foreach ($values as $postion => $Value) {
-        $stmt->bindParam($postion + 1, $Value);
+        $stmt->bindValue($postion + 1, $Value);
       }
       $stmt->execute();
 

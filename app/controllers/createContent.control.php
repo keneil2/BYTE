@@ -11,23 +11,25 @@ spl_autoload_register(function ($class) {
   require_once "app/models/admin.model.php";
 });
 
-
 try {
   if (Error::isRequestMethod("POST")) {
-    # sanitizing inputs
+    #check file field for errors
+    Error::logFileErrors();
+    Error::handleAllError($_POST, ["title", "price", "itemDescription"], URLPATH: "/create_Content");
+
+    # sanitizing input
     $title = Error::sanitizeInput($_POST["title"]);
     $price = Error::sanitizeInput($_POST["price"]);
     $descrition = Error::sanitizeInput($_POST["itemDescription"]);
-    #check file field for errors
-    Error::logFileErrors();
+    $categoryId=intval(Error::sanitizeInput($_POST["category-id"]));
     file::checkFileType($_FILES["pic"]["tmp_name"]);
-    Error::handleAllError($_POST, ["title", "price", "itemDescription"], URLPATH: "/create_Content");
     $filename = file::movefile($_FILES["pic"]["name"], $_FILES["pic"]["tmp_name"]);
+
     #uploading file to db
     $uploadFile = new File();
-    $uploadFile->setColumns(["food_name", "description", "price", "image_path"]);
+    $uploadFile->setColumns(["food_name", "description", "price", "category_id", "image_path"]);
     $uploadFile->setTablename("foods");
-    $uploadFile->insertdata([$title, $descrition, $price, $filename]);
+    $uploadFile->insertdata([$title, $descrition, $price, $_POST["category-id"] ,$filename]);
   } else {
     $_SESSION["request_method"] = "invalid request Method";
     ;
@@ -35,5 +37,3 @@ try {
 } catch (\Exception $e) {
   $_SESSION["debug_errors"] = $e->getMessage();
 }
-
-echo $_SESSION["content_db_Error"];
