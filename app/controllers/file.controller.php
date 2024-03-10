@@ -1,4 +1,8 @@
 <?php 
+use app\models\AdminDb;
+spl_autoload_register(function(){
+    require_once dirname(__FILE__,1)."/models/admin.model.php";
+});
 interface FileUploader{
     public static function checkFileType($fieldname);
     public static function movefile($filename,$filetmpname );
@@ -7,7 +11,7 @@ interface FileUploader{
     
 }
 
-class file implements FileUploader{
+class file extends AdminDb implements FileUploader{
     
 
     public static function checkFileType($fieldname){
@@ -25,6 +29,7 @@ class file implements FileUploader{
         $destination="C:/xampp/htdocs/MVC FRAMEWORK/storage/".$fname;
         if(move_uploaded_file($filetmpname,$destination)){
           $_SESSION["reponse_message"]="file added sucessfully";
+          return $fname;
         }else{
             $_SESSION["reponse_message"]="file not uplaoded";
         }
