@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<?php
+if(empty($_COOKIE["login_status"])){
+     header("Location:/admin-login");
+ }?>
 <body>
     <?php require "layout/admin.nav.php";
     require_once dirname(__FILE__, 2) . "/models/admin.model.php";

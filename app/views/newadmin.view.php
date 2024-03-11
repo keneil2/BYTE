@@ -1,3 +1,8 @@
+<?php
+if(empty($_COOKIE["login_status"])){
+     header("Location:/admin-login");
+ }?>
+
 <style>
     .submit_form{
         display: flex;

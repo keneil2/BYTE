@@ -5,6 +5,10 @@ spl_autoload_register(function ($class) {
  use app\models\AdminDb;
  require_once "layout/admin.nav.php";
 ?>  
+<?php
+if(empty($_COOKIE["login_status"])){
+     header("Location:/admin-login");
+ }?>
   <style>
     .upadated{
       color:green;

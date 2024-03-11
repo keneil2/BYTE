@@ -2,10 +2,9 @@
 require "layout/admin.nav.php";
 ?>
 <?php
-   //  if(!isset($_COOKIE["login_status"]){
-   //    header("Location:/");
-   //  })
-    ?>
+if(empty($_COOKIE["login_status"])){
+     header("Location:/admin-login");
+ }?>
 <section class="adminPanel">
 <div class="quick-display">
    <div class="heading"><h1>ORDERS</h1> <p>Daily</p><p>Monthly</p></div>

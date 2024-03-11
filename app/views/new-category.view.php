@@ -1,5 +1,9 @@
 <style>
 .form{
+    <?php
+if(empty($_COOKIE["login_status"])){
+     header("Location:/admin-login");
+ }?>
     display: flex;
     justify-content: center;
     align-items:center;
