@@ -32,7 +32,7 @@ if(isset($_SESSION["Admin_Login_errors"])){
 
 if(isset($_SESSION["admin_category_errors"])){
     foreach($_SESSION["admin_category_errors"] as $error){
-        echo "<p>".$error."</p>";
+        echo "<p class='Error'>".$error."</p>";
     }
     unset($_SESSION["admin_category_errors"] );
  }

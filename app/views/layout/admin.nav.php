@@ -15,7 +15,7 @@
     <li><a href="/manage-Admins">manage Users</a></li>
     <li><a href="/orders">Orders</a></li>
     <li><a href="/Categories">Categories</a></li>
-    <li><a href="/support">support</a></li>
+    <li><a href="/create_Content">Add Item</a></li>
     <li><a href="/logout">Logout</a></li>
    </ul>
 <div class="profile"><img src="public/css/img/9703596.png" alt="admin-profile-pic"></div>

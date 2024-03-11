@@ -1,26 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.form{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+input[type="text"]{
+    width:250px;
+    height:40px;
+}
+label{
+    font-size:1.1rem;
+    margin-top:20px;
+}
+.error{
+    color:red;
+}
+button{
+    padding:5px 15px;
+    background-color:green;
+    color:white;
+    border-radius:5px;
+}
+</style>
     <?php require "layout/admin.nav.php";?>
-</head>
-<body>
-    <form action="/add-category" method="GET">
-        <input type="text" name="category_name" placehoder="Enter category Name"><br>
-        <label>do you want the category to be featured?</label><br>
+
+
+     <div class="form" >
+
+
+ 
+     <form action="/add-category" method="GET">
+        
+     <?php if(isset($_SESSION["admin_category_errors"])){
+        foreach($_SESSION["admin_category_errors"] as $error){
+            echo "<p class='error'>".$error."</p>";
+        }
+        unset($_SESSION["admin_category_errors"]);
+    }?>
+    <h3> Add NEW category</h3><br><br>
+        <input type="text" name="category_name" placehoder="Enter category Name"><br><br>
+        <label>do you want the category to be featured?</label><br><br>
         <label for="yes">yes</label>
         <input type="radio" name="toFeature" value="Yes">
         <label for="No">No</label>
-        <input type="radio" name="toFeature" value="No"><br>
+        <input type="radio" name="toFeature" value="No"><br><br>
         <button type="submit" >Add Category</button>
     </form>
-    <?php if(isset($_SESSION["admin_category_errors"])){
-        foreach($_SESSION["admin_category_errors"] as $error){
-            echo $error;
-        }
-        unset($_SESSION["admin_category_errors"]);
-    }
-        ?>
-</body>
-</html>
+    
+    </div>
+    

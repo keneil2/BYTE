@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
   echo $email;
   $upadate=new AdminDb();
   $upadate->updateUser($userName,$email,$_POST["id"]);
-  $_SESSION["update_admin_message"]="user added successfully";
+  $_SESSION["update_admin_message"]="user updated successfully";
   header("Location:/update-admins");
   exit;
 }

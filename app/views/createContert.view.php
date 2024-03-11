@@ -11,6 +11,7 @@
         width:350px;
         border-radius: 10px;
         margin-top:20px;
+        padding:5px;
         border: none;
         outline:none;
     }
@@ -21,11 +22,11 @@
     }
     form input[type="file"]{
         width:200px;
-        background-color:blueviolet;
+        /* background-color:blueviolet; */
     }
     .form{
     border: 1px solid black;
-    background-color: wheat;
+    /* background-color: wheat; */
     width:fit-content;
     padding:30px 10px;
     }
@@ -33,6 +34,13 @@
         margin: 15px 0px;
         font-size: 1.2rem;
         background-color: white;
+    }
+    button{
+        background-color: green;
+        color:white;
+        width:150px;
+        border-radius:5px;
+        padding:8px 15px;
     }
     </style>
 </head>
