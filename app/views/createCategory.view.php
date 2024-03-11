@@ -18,9 +18,9 @@
     </center>
     <style>
         table {
-            width: 80%;
-            /* margin-top: 10px; */
-            margin-left: 20%;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
         }
 
         h3 {
@@ -30,10 +30,9 @@
         }
 
         .table {
-            width: 80%;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            /* height: 100vh; */
             justify-content: flex-start;
         }
 
@@ -41,10 +40,6 @@
             text-align: center;
         }
 
-        /* form{
-        
-        
-    } */
         .add-button {
             margin-left: 200px;
             background-color: #2272FF;
@@ -52,6 +47,7 @@
             border-radius: 5px;
             border: 1px solid rgba(0, 0, 0, 0.5);
             color: white;
+            margin-bottom: 20px;
         }
 
         .add-button:hover {
@@ -66,7 +62,9 @@
             border: none;
             color: white;
         }
-
+        .delete{
+            background-color: red;
+        }
         .actions {
             display: flex;
             justify-content: center;
@@ -94,7 +92,7 @@
                 echo "<tr>";
                 echo "<td>" . $rows["CATEGORY_NAME"] . "</td>";
                 echo "<td class='actions'><form action='/update' ><button>Update</button></form> 
-                   <form action='/delete' ><button>Delete</button></form></td>";
+                   <form action='/delete' ><button class='delete'>Delete</button></form></td>";
                 echo "<tr>";
             }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php require "layout/admin.nav.php";?>
 </head>
 <body>
       <form action="app/controllers/newadmin.contrl.php" method="POST">

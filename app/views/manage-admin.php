@@ -9,8 +9,6 @@ use app\models\AdminDb;
 <style> 
     table{
         width:80%;
-        /* margin-top: 10px; */
-        margin-left:20%;
     }
     h3{
         margin-bottom:20px;
@@ -18,19 +16,15 @@ use app\models\AdminDb;
         text-decoration:underline;
     }
     .table{
-        width:80%;
+        width:100%;
     display:flex;
     flex-direction: column;
-  /* height: 100vh; */
   justify-content: flex-start;
+  align-items: center;
     }
     td{
         text-align: center;
     }
-    /* form{
-        
-        
-    } */
     .add-button{
         margin-left:200px;
         background-color:#2272FF;
@@ -50,7 +44,9 @@ use app\models\AdminDb;
         border:none;
         color:white;
     }
-
+.delete{
+    background-color: red;
+}
     .actions{
         display:flex;
         justify-content:center;
@@ -65,7 +61,7 @@ if(empty($_COOKIE["login_status"])){
 </style>
 <form action="/new-admin"><input class="add-button" type="submit" value="Add New User"></form>
 <div class="table">
-   <center><h3>Admins</h3></center>
+   <center><h3>REGISTERED USERS</h3></center>
 <table>
     <tr>
         <th>
@@ -101,7 +97,7 @@ if(empty($_COOKIE["login_status"])){
         <td class='actions'>
         <form action='/delete-admin'>
         <input type='hidden' name='user_id' value='".$row["ID"]."'>
-        <button>delete</button></form>
+        <button class='delete'>delete</button></form>
       <form action='/update-admins' method='GET'>
       <input type='hidden' name='user_id' value='".$row["ID"]."'>
            <button>Update</button>
