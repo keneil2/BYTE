@@ -1,3 +1,7 @@
+<?php
+if(empty($_COOKIE["login_status"])){
+     header("Location:/admin-login");
+ }?>
 <style>
 .form{
     display:flex;

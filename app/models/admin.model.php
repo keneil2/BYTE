@@ -135,16 +135,16 @@ class AdminDb
       return false;
     }
   }
-  public function Deleteadmin($id)
+  public function Deleteadmin($id,$table="adminusers")
   {
     try {
       $con = $this->Dbcon();
-      $query = "DELETE FROM adminusers WHERE ID=:id";
+      $query = "DELETE FROM $table WHERE ID=:id";
       $stmt = $con->prepare($query);
       $stmt->bindParam("id", $id);
       $stmt->execute();
     } catch (\Exception $e) {
-      return false;
+      return true;
     }
   }
   public function createCategory(string $category, string $feature)
@@ -170,7 +170,10 @@ class AdminDb
     $stmt->execute();
     $result = $stmt->fetch(\PDO::FETCH_ASSOC);
     // return $result;
-    if ($result["CATEGORY_NAME"] == $value) {
+    if(is_bool($result)){
+     return false;
+    }
+    if ($result["CATEGORY_NAME"] !== $value) {
       return false;
     } else {
       return true;
@@ -213,11 +216,20 @@ class AdminDb
   public function updatefieldstring($ID,array $values){
 
     $con=$this->Dbcon();
-    $query="UPDATE $this->tablename SET ".str_replace(" ","=?",implode(" ,",$this->columnNames))." WHERE ID=:id";
+    $setParts="";
+    foreach($this->columnNames as $col){
+      $setParts.=$col."=:$col".", ";
+    }
+    var_dump($setParts);
+    $query="UPDATE $this->tablename SET ".rtrim($setParts,", ")." WHERE ID=:id";
+    echo $query;
     $stmt=$con->prepare($query);
-  foreach ($values as $value){
-    $stmt->bindParam("?",$value);
-  }
+    $i=1;
+    foreach ($values as $col => $Value) {
+      foreach($this->columnNames as $col){
+        $stmt->bindValue("$col", $Value);
+      }
+    }
   $stmt->bindParam("id",$ID);
   $stmt->execute();
 }

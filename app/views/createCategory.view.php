@@ -95,7 +95,7 @@ if(empty($_COOKIE["login_status"])){
                 echo "<tr>";
                 echo "<td>" . $rows["CATEGORY_NAME"] . "</td>";
                 echo "<td class='actions'><form action='/update_Category'><button>Update</button><input type='hidden' name='categoryID' value=".$rows["ID"]."></form> 
-                   <form action='/delete' ><button class='delete'>Delete</button></form></td>";
+                   <form action='app/controllers\category.delete.contrl.php' ><button class='delete'>Delete</button><input type='hidden' name=category_ID value=".$rows["ID"]." ></form></td>";
                 echo "<tr>";
             }
 

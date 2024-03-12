@@ -45,20 +45,23 @@ if(empty($_COOKIE["login_status"])){
         border-radius:5px;
         padding:8px 15px;
     }
+    .success_message{
+        color:green;
+        font-size:1.2rem;
+    }
     </style>
 </head>
-
 <body>
     <?php
     use app\models\AdminDb;
     require "layout/admin.nav.php";
     require_once  (dirname(__FILE__, 2) . "/models/admin.model.php");
     require_once "app/views/layout/admin.nav.php";
+
     ?>
     <center>
         <div class="form">
         <h2>Add Item</h2>
-
         <form action="/add-Content" method="POST" enctype="multipart/form-data">
             <input type="file" name="pic"><br>
             <input type="text" name="title" placeholder="Enter title of the item"><br>

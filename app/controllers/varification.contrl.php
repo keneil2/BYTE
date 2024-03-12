@@ -11,7 +11,7 @@ class Varification_controller{
    public static function checkEmailExist($email,$code,$userName){
         // calling the php object
                  $mail = new PHPMailer(); 
-                // not recommended for production environment basicaly unsecure connections
+                // not recommended for production environment basicaly signing my own cert since the sever one wont get varified :/
                 $mail->SMTPOptions = [
                     'ssl' => [
                         'verify_peer' => false,
@@ -20,7 +20,7 @@ class Varification_controller{
                     ]
                 ];
                 $mail->SMTPDebug = 0;   
-                 // calling the session that sends the email 
+                 // calling the method that sends the email 
                 $mail->isSMTP();
                 // setting the smtp host
                 $mail->Host = gethostbyname('smtp.gmail.com'); 

@@ -17,10 +17,12 @@ $error=[];
 
         $categoryname=  Error::sanitizeInput($_GET["category_name"]);
         $isFetaured=  Error::sanitizeInput($_GET["toFeature"]);
-        $createCategory= new AdminDb();
+        $newCategory= new AdminDb();
 
-        $createCategory->createCategory( $categoryname,$isFetaured,);
-
+        $newCategory->createCategory( $categoryname,$isFetaured);
+    $_SESSION["new_category_created"]="new category added successfully";
+        header("Location:/new-category");
+        exit();
 }
 }else{
     $_SESSION["requestMethod_error"]="invalid input Method";
