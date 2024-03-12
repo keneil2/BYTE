@@ -92,11 +92,11 @@ class AdminDb
       return false;
     }
   }
-  public function disPlayUsers()
+  public function disPlayUsers($table="adminusers")
   {
     try {
       $con = $this->Dbcon();
-      $query = "SELECT * FROM adminusers";
+      $query = "SELECT * FROM $table";
       $stmt = $con->prepare($query);
       $stmt->execute();
       $result = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? ["no users added"];
@@ -210,10 +210,17 @@ class AdminDb
       return false;
     }
   }
-  public function updatefieldstring($category, string $feature)
-  {
+  public function updatefieldstring($ID,array $values){
 
+    $con=$this->Dbcon();
+    $query="UPDATE $this->tablename SET ".str_replace(" ","=?",implode(" ,",$this->columnNames))." WHERE ID=:id";
+    $stmt=$con->prepare($query);
+  foreach ($values as $value){
+    $stmt->bindParam("?",$value);
   }
+  $stmt->bindParam("id",$ID);
+  $stmt->execute();
+}
   public function deletefield(string $category)
   {
 

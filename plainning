@@ -27,6 +27,6 @@ to do tommarrow : login controller errors to fix
   DocumentRoot "C:\xampp\htdocs\MVC FRAMEWORK"
 <Directory "C:/xampp/htdocs">
 try making error handler
-work on varifying admin for each page
-fix update for category
+work on varifying admin for each page//
+fix update for category and also delete
 

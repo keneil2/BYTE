@@ -22,7 +22,9 @@ public  $uri;
     "/new-category"=>"app/views/new-category.view.php",
     "/add-category"=>"app\controllers\addcategory.contrl.php",
     "/create_Content"=> "app/views/createContert.view.php",
-    "/add-Content"=>"app\controllers\createContent.control.php"
+    "/add-Content"=>"app\controllers\createContent.control.php",
+    "/update_Category"=>"app/views/updatecategory.view.php",
+    "/update_category_controller"=>"app/controllers/update.category.php"
     ];
  function __construct($uri){ // takes current server URI
     $this->uri=$uri;  

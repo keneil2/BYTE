@@ -53,7 +53,7 @@ if(empty($_COOKIE["login_status"])){
     if(isset($_SESSION["update_admin_message"])){
     echo "<p class='upadated'>".$_SESSION["update_admin_message"]."</p>";
     unset($_SESSION["update_admin_message"]);}
-    ?></p>
+    ?>
 
 
    <?php require_once "layout/login.error.view.php";?>
@@ -64,7 +64,7 @@ if(empty($_COOKIE["login_status"])){
         if(isset($_GET["user_id"])){
         $getinput=new AdminDb();
         $id=$_GET["user_id"];
-        $result=$getinput->selectBYId($id)?? "empty";
+        $result=$getinput->selectBYId($id) ?? "empty";
         echo "<input type='hidden' name=id value=".$id.">";
       }}
         ?>

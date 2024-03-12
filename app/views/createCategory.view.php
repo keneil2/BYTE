@@ -94,7 +94,7 @@ if(empty($_COOKIE["login_status"])){
             foreach ($result as $rows) {
                 echo "<tr>";
                 echo "<td>" . $rows["CATEGORY_NAME"] . "</td>";
-                echo "<td class='actions'><form action='/update' ><button>Update</button></form> 
+                echo "<td class='actions'><form action='/update_Category'><button>Update</button><input type='hidden' name='categoryID' value=".$rows["ID"]."></form> 
                    <form action='/delete' ><button class='delete'>Delete</button></form></td>";
                 echo "<tr>";
             }

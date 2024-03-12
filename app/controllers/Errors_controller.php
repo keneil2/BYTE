@@ -42,7 +42,7 @@ spl_autoload_register(function ($class) {
             echo "not set";
         }
      }
-     public static function handleAllError($InputMETHOD,array|string $feilds,$tablename=null,$fieldname=null,$value=null,$URLPATH="/new-category"){
+     public static function handleAllError($InputMETHOD,array|string $feilds,$tablename=null,$fieldname=null,$value=null,$URLPATH="/new-category",$errorName="admin_category_errors"){
         $errors=[];
         foreach($feilds as $feild){
         if( empty($InputMETHOD[$feild]) || !isset($InputMETHOD[$feild])){
@@ -57,7 +57,7 @@ spl_autoload_register(function ($class) {
             $errors[$fieldname."_error"]="fieldname already exist";
         }}
         if(!empty($errors)){
-            $_SESSION["admin_category_errors"]=$errors; 
+            $_SESSION[$errorName]=$errors; 
             header("Location:$URLPATH");
             exit();
         }else{
