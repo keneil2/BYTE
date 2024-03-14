@@ -1,3 +1,4 @@
+ <title>Update Admin</title>
  <?php 
 spl_autoload_register(function ($class) {
     require_once "app/models/admin.model.php";

@@ -1,3 +1,4 @@
+<title>Add Category</title>
 <style>
 .form{
     <?php

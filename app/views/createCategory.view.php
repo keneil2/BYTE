@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<title>Manage categories </title>
 <?php
 if(empty($_COOKIE["login_status"])){
      header("Location:/admin-login");
  }?>
-<body>
+
     <?php require "layout/admin.nav.php";
     require_once dirname(__FILE__, 2) . "/models/admin.model.php";
     use app\models\AdminDb;

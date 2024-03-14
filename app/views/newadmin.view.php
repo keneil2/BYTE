@@ -1,3 +1,4 @@
+<title>New Admin</title>
 <?php
 if(empty($_COOKIE["login_status"])){
      header("Location:/admin-login");

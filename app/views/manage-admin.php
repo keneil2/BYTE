@@ -1,4 +1,4 @@
-
+<title>Manage users</title>
 <?php 
 include_once "layout/admin.nav.php";
 

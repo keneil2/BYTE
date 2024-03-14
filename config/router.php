@@ -25,7 +25,8 @@ public  $uri;
     "/add-Content"=>"app\controllers\createContent.control.php",
     "/update_Category"=>"app/views/updatecategory.view.php",
     "/update_category_controller"=>"app/controllers/update.category.php",
-    "/products"=>"app/controllers/displayProduct.control.php"
+    "/products"=>"app/controllers/displayProduct.control.php",
+    "/Product"=>"app/views/Product.view.php"
 
     ];
  function __construct($uri){ // takes current server URI
