@@ -8,11 +8,7 @@
   margin: 0.5em;
   position: relative;
 }
-img{
-  object-fit:cover;
-    width: 200px;
-    height:200px;
-}
+
 .title{
   height: fit-content;
   background-color: black;
@@ -21,6 +17,44 @@ img{
   text-align: center;
   padding:10px;
   border-radius:10px;
+}
+.item{
+ border:1px solid rgba(0, 0, 0,0.3);
+ height: fit-content;
+ background-color: white;
+ padding:5px;
+ border-radius:10px;
+}
+.item img{
+  object-fit:cover;
+    width: 200px;
+    height:200px;
+    border-radius:10px;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+.item h3{
+  font-size: 1.2rem;
+  margin: 15px 0px;
+}
+.item .buy_now{
+  margin-top:10px;
+  color: white;
+  background-color: rgb(72, 175, 51,0.8);
+  padding:5px;
+  border:none;
+  border-radius:5px;
+}
+.item .button{
+  background-color:rgb(72, 175, 51,0.8);
+  color:white;
+  border-radius: 5px;
+  padding:5px;
+  border:none;
+}
+.item .price{
+  font-size: 1.2rem;
+  font-weight: 500;
+
 }
 .items{
   display:flex;
@@ -40,9 +74,11 @@ img{
   padding: 10px 50px;
 }
 .orderSummary{
-  position: -webkit-sticky;
-  position: sticky;
+  position:sticky;
   top: 0;
+  right:0;
+  margin-left:100px;
+  width:fit-content;
   background-color: rgb(255, 255, 255);
   height: fit-content;
   border-radius:10px;
@@ -57,15 +93,21 @@ img{
 .menuSection{
   margin-top:20px;
   display:grid;
-  grid-template-columns:repeat(3,300px);
-  grid-template-rows: repeat(3,300px);
-  gap:50px;
+  grid-template-columns:repeat(3,250px);
+  grid-template-rows: repeat(3,250px);
+  gap:150px;
+}
+.food-item{
+  border:none;
+  background-color: transparent;
+
 }
 .cartdetails input{
   margin-bottom:20px;
   border-bottom: 1px solid rgb(0, 0, 0);
   border-top: 1px solid rgb(0, 0, 0);
 }
+
 .cartdetails input[type="radio"]{
  accent-color: orangered;
  width:20px;
@@ -77,7 +119,7 @@ img{
 .cartdetails button{
   padding:10px 50px;
   border:none;
-  background-color:rgb(23, 139, 0);
+  background-color:rgb(72, 175, 51);
   font-size: larger;
   color:white;
   border-radius:5px;

@@ -54,3 +54,8 @@ body{
     border:none;
     border-radius:3px;
 }
+.featured{
+    text-align: center;
+    text-decoration: underline;
+    margin: 15px 0px;
+}

@@ -29,9 +29,9 @@ button{
  if($_SERVER["REQUEST_METHOD"]=="GET" && isset($_GET["categoryID"])){
  
         $categoryname=new AdminDb();
-        $results=$categoryname->disPlayUsers("categories");
-        $categoryName=$results[0]["CATEGORY_NAME"];
-        $display=$results[0]["to_feature"];
+        $results=$categoryname->selectBYId($_GET["categoryID"],"categories");
+        $categoryName=$results["CATEGORY_NAME"];
+        $display=$results["to_feature"];
         $id=$_GET["categoryID"];
     }else{
         $categoryName="";

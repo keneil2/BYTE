@@ -106,11 +106,11 @@ class AdminDb
       return false;
     }
   }
-  public function selectBYId($id)
+  public function selectBYId($id,$table="adminusers")
   {
     try {
       $con = $this->Dbcon();
-      $query = "SELECT * FROM adminusers WHERE ID=:id";
+      $query = "SELECT * FROM $table WHERE ID=:id";
       $stmt = $con->prepare($query);
       $stmt->bindParam("id", $id);
       $stmt->execute();

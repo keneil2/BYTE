@@ -26,7 +26,14 @@ to do tommarrow : login controller errors to fix
 # DocumentRoot "C:/xampp/htdocs"
   DocumentRoot "C:\xampp\htdocs\MVC FRAMEWORK"
 <Directory "C:/xampp/htdocs">
+
+
+  //march 10,2024
 try making error handler
 work on varifying admin for each page//
 fix update for category and also delete
 
+
+
+//march 12,
+// tomarrow I will be doing the adding the food items to the front page 

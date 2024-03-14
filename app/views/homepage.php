@@ -40,6 +40,7 @@ require_once "layout/navbar.view.php";
     </div>
 </div>
  </div>
- <?php require_once "layout\menu.php";?>
+ <h2 class="featured" >FEATURE DISHES</h2>
+ <?php require_once "layout/featured.php";?>
 </body>
 </html>

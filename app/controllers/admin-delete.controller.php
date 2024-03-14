@@ -7,6 +7,5 @@ if ($_SERVER["REQUEST_METHOD"]=="GET"){
    if($deleteuser->Deleteadmin($_GET["user_id"])==true){
       exit("connection error");
    }
-   
    header("Location:/manage-Admins");
 }
