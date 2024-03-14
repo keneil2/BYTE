@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="nav2">
-            <h1>JT.</h1>
+            <h1>Byte</h1>
             <ul>
                 <li><a href="/home">Home</a></li>
                 <li><a href="/menu">menu</a></li>
@@ -31,7 +31,8 @@
         <button><a href="/table">FIND A TABLE</a></button>
         </div>
         <?php 
-        echo"<p class='display'>$display<p>";
+        if(isset($display)){
+        echo"<p class='display'>$display<p>";}
         ?>
 
 </nav>

@@ -40,12 +40,13 @@ $results=$result->displayProducts(new dbcon );
     <th>PRICE</th>
     <th>Category</th>
     <th>Image</th>
-    <?php foreach($results as $item){?>
+    
+    <?php var_dump($results); foreach($results as $item){?>
      <tr><td><?php echo $item["food_name"]?></td>
      <td><?php echo "$".$item["price"]?></td>
      <td><?php echo $item["category_name"]?></td>
-     <td class="actions" ><form action=""><button>update</button></form>
-     <form action=""><button class='deleteBtn'>delete</button><input type="hidden"></form></td>
+     <td class="actions" ><form action="/productUpdate"><button>update</button><input type="text" name='ProductId' value=<?php echo $item["ID"]?>></form>
+     <form action="/"><button class='deleteBtn'>delete</button><input type="hidden"></form></td>
     </tr>
         <?php }?>
 </table></center>

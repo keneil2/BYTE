@@ -16,7 +16,7 @@
         ?>
     <div class="item">
     <center><img src="storage/<?php echo $result[$i]["image_path"]  ?>">
-        <form action=""><input type="hidden" value=<?= $result[$i]["ID"]?>><h3><button class="food-item"><?= $result[$i]["food_name"] ?></button></h3></form>
+        <form action="/Food_Items"><input type="hidden" name="Product_id" value=<?= $result[$i]["ID"]?>><h3><button class="food-item"><?= $result[$i]["food_name"] ?></button></h3></form>
         <p class="price"><?= "$".$result[$i]["price"]?><p>
             <form action="/addtocart"><button class="button">Add to cart</button></form>
             <form action="/addtocart"><button class="buy_now" >Buy now</button></form>

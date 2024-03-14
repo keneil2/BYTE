@@ -26,7 +26,10 @@ public  $uri;
     "/update_Category"=>"app/views/updatecategory.view.php",
     "/update_category_controller"=>"app/controllers/update.category.php",
     "/products"=>"app/controllers/displayProduct.control.php",
-    "/Product"=>"app/views/Product.view.php"
+    "/Product"=>"app/views/Product.view.php",
+    "/productUpdate"=>"app/views/ProductUpdate.view.php",
+    "/productcontrl"=>"app\controllers\Products.control.php",
+    "/Food_Items"=>"app/views/productPage.view.php"
 
     ];
  function __construct($uri){ // takes current server URI
