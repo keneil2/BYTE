@@ -21,7 +21,7 @@
 .item{
  border:1px solid rgba(0, 0, 0,0.3);
  height: fit-content;
- background-color: white;
+ background-color: rgba(239, 239, 239,0.4);
  padding:5px;
  border-radius:10px;
 }
@@ -39,13 +39,13 @@
 .item .buy_now{
   margin-top:10px;
   color: white;
-  background-color: rgb(72, 175, 51,0.8);
+  background-color: rgb(255,69,0,0.8);
   padding:5px;
   border:none;
   border-radius:5px;
 }
 .item .button{
-  background-color:rgb(72, 175, 51,0.8);
+  background-color:rgb(255,69,0,0.8);
   color:white;
   border-radius: 5px;
   padding:5px;
@@ -119,13 +119,13 @@
 .cartdetails button{
   padding:10px 50px;
   border:none;
-  background-color:rgb(72, 175, 51);
+  background-color:rgb(255,69,0,0.8);
   font-size: larger;
   color:white;
   border-radius:5px;
 }
 .cartdetails button:hover{
-  background-color:rgb(240, 106, 57);
+  background-color:rgb(72, 240, 57);
 }
 
 .first-radio{

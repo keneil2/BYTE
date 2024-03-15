@@ -16,12 +16,15 @@ if(Error::isRequestMethod("GET")){
         box-sizing: border-box;
     }
     body{
-        background-color:rgb(239, 239, 239)
+        background-color:white;
     }
     nav{
-        min-height:50vh;
+        min-height:30vh;
+        /* background:rgb(255,69,0); */
+        background-blend-mode:darken;
     }
   .product img{
+    object-fit:fit;
    height:400px;
    width:400px;
    border-radius:15px;
@@ -31,10 +34,13 @@ if(Error::isRequestMethod("GET")){
     font-size:0.9rem;
   }
   .product{
+    /* position:absolute;
+    top:200px;
+    left:400px; */
     width:600px;
     height:fit-content;
-    background-color: white;
-    box-shadow: -1px -2px 2px rgba(0,0,0,0.7);
+    background-color:rgba(239, 239, 239,0.4);
+    box-shadow: -1px -2px 2px rgba(0,0,0,0.5);
     border-radius:5px;
     padding:20px;
   }
@@ -43,7 +49,7 @@ if(Error::isRequestMethod("GET")){
     color:white;
     background-color:rgb(255,69,0,0.8);
     border:none;
-    padding:15px;
+    padding:5px 15px;
     border-radius: 5px;
   }
 </style>
