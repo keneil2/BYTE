@@ -30,7 +30,8 @@ public  $uri;
     "/productUpdate"=>"app/views/ProductUpdate.view.php",
     "/productcontrl"=>"app\controllers\Products.control.php",
     "/Food_Items"=>"app/views/productPage.view.php",
-    "/delete_item"=>"app\controllers\product_deleter.php"
+    "/delete_item"=>"app\controllers\product_deleter.php",
+    "/addtocart"=>"app\controllers\addtocart.php"
 
     ];
  function __construct($uri){ // takes current server URI
