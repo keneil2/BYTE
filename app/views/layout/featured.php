@@ -27,9 +27,9 @@
                         <p class="price">
                             <?= "$" . $result[$i]["price"] ?>
                         <p>
-                        <form action="/addtocart"><input type="text" name="id" value=<?= $result[$i]["ID"] ?>><button
+                        <a href=#ordersummary><form action="/addtocart"><input type="text" name="id" value=<?= $result[$i]["ID"] ?>><button
                                 class="button">
-                                <a href=#ordersummary>Add to cart</a></button></form>
+                                Add to cart</button></form></a>
                         <form action=""><input type="hidden" name="Product_id" value=<?= $result[$i]["ID"] ?>><button
                                 class="buy_now">Buy now</button></form>
                     </center>
@@ -44,8 +44,12 @@
             <div class="title">Order Summary</div>
             <div class="cartdetails">
                 <?php
-                if (isset ($_SESSION["ITEMS"])) {
-                    foreach ($_SESSION["ITEMS"] as $array) {
+                if (isset($_COOKIE["cart_items"])) {
+                    
+                    $data=unserialize($_COOKIE["cart_items"])?? [];
+                    if($data!==[]){
+                    foreach ($data as $array) {
+                        if(is_array($array)){
                         foreach ($array as $values) {
 
                             ?>
@@ -60,8 +64,8 @@
                                 </div>
                             </center>
                         <?php }
-                    }
-                } else { ?>
+                    }}
+                } }else { ?>
                     <center>
                         <div class=" items"><img src="public\css\img\shopping-cart.png" alt="cart-icon">
                             <p>empty cart</p>
@@ -74,7 +78,7 @@
                             class="first-radio">$10.00</div>
                     <div class="inputs"> <label for="Pickup" id="label2">Pickup</label><input type="radio"
                             name="order-type" id=""> $5.00</div>
-                    <p>Total:</p>
+                    <p>Total:<?="  $".$_COOKIE['cart_total'].".00"?></p>
                     <button>Order Now</button>
                 </form>
             </div>

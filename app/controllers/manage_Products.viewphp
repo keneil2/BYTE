@@ -1,5 +1,5 @@
 <?php 
-require_once dirname(__FILE__,2)."/model/admin.model.php";
+require_once dirname(__FILE__,2)."/model";
 class Manage_Products{
 public function DispalyItems(Admin $Adminclass){
 
