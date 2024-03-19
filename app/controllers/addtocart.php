@@ -7,7 +7,7 @@ spl_autoload_register(fn($class) => require_once dirname(__FILE__, 2) . "/models
 class addtocart extends \Product
 {
     private $cart;
-    private array $price;
+    private $price;
     public function showProduct($tableName, $id)
     {
         $product = new \Product;
@@ -30,8 +30,12 @@ class addtocart extends \Product
     {
         $total = 0;
         foreach ($items as $products) {
+            if ($products !== null) {
             foreach ($products as $product) {
-                $total += floatval($product["price"]);
+                
+                    $total += floatval($product["price"]);
+                }
+
             }
         }
         return $total;
@@ -40,22 +44,17 @@ class addtocart extends \Product
 if (isset ($_GET["id"])) {
     $addItem = new addtocart();
     $addItem->addTocart($addItem->showProduct("foods", $_GET["id"]));
-    // var_dump($addItem);
-    $data = [];
-    $data["cart_total"] = null;
+    $addItem->getcart();
+
+
+
+    // $data["cart_total"] = null;
     if (isset ($_COOKIE["cart_items"])) {
-        $data = unserialize($_COOKIE["cart_items"]);
+        $cartToatl = $addItem->CalculateTotalPrice(unserialize($_COOKIE["cart_items"]));
+        setcookie("cart_total", $cartToatl, 0, "/", "localhost");
     }
-
-    $data[] = $addItem->getcart();
-    if($data!==null){
+    $data=isset($_COOKIE["cart_items"]) ? unserialize($_COOKIE["cart_items"]):[];
+    $data[]= $addItem->getcart();
     setcookie("cart_items", serialize($data), 0, "/", "localhost");
-    echo "<pre>";
-    var_dump($data);
-    echo "</pre>";
-    $_SESSION["ITEMS"][] = $addItem->getcart();
-    $cartToatl=$addItem->CalculateTotalPrice($data);
-    setcookie("cart_total",$cartToatl, 0, "/", "localhost");
-    header("Location:/home");}
+        require_once "app/views/layout/cartitems.php";
 }
-

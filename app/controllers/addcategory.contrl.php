@@ -3,7 +3,7 @@ use app\models\AdminDb;
  use app\controllers\Error;
 require_once "app/models/admin.model.php";
 spl_autoload_register(function($class){
-    require "$class"."s_controller.php";
+    require $class."s_controller.php";
 });
 
 $error=[];

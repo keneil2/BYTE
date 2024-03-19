@@ -13,7 +13,7 @@ class dbcon{
     }catch(Exception $e){
        $_SESSION["conncetion_error"]="<p style='color:red;'> connection error:check your internet connection</p>";
        header("Location:/login");
-       exit("");
+       exit();
     }
     }
 }

@@ -6,6 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../public/css/menu.css">
     <title>Document</title>
+    <script>
+        
+       function addToCart(product){
+            let xhr= new XMLHttpRequest();
+            xhr.open("GET","/addtocart?id="+ product,true);
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==XMLHttpRequest.DONE && xhr.status==200){
+                  document.getElementById("cartDetails").innerHTML=xhr.responseText;
+                }
+            }
+            xhr.send();
+        }
+        window.addEventListener("load",function(){
+            let xhr= new XMLHttpRequest();
+            xhr.open("GET","/getcartdata",true);
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==XMLHttpRequest.DONE && xhr.status==200){
+                  document.getElementById("cartDetails").innerHTML=xhr.responseText;
+                }
+            }
+            xhr.send(); 
+        })
+    </script>
 </head>
 
 <body>
@@ -25,11 +48,11 @@
                                 </button></h3>
                         </form>
                         <p class="price">
-                            <?= "$" . $result[$i]["price"] ?>
+                            <?="$" . $result[$i]["price"]?>
                         <p>
-                        <a href=#ordersummary><form action="/addtocart"><input type="text" name="id" value=<?= $result[$i]["ID"] ?>><button
-                                class="button">
-                                Add to cart</button></form></a>
+                        <button onclick="addToCart(<?= $result[$i]['ID'] ?>)"
+                                class="button"  id="addtocart">
+                                Add to cart</button>
                         <form action=""><input type="hidden" name="Product_id" value=<?= $result[$i]["ID"] ?>><button
                                 class="buy_now">Buy now</button></form>
                     </center>
@@ -42,37 +65,7 @@
         </section>
         <div class="orderSummary" id="ordersummary">
             <div class="title">Order Summary</div>
-            <div class="cartdetails">
-                <?php
-                if (isset($_COOKIE["cart_items"])) {
-                    
-                    $data=unserialize($_COOKIE["cart_items"])?? [];
-                    if($data!==[]){
-                    foreach ($data as $array) {
-                        if(is_array($array)){
-                        foreach ($array as $values) {
-
-                            ?>
-                            <center>
-                                <div class="items"><img src="storage/<?= $values["image_path"] ?>" alt="cart-icon">
-                                    <p>
-                                        <?php echo $values["food_name"] ?>
-                                    </p>
-                                    <p>
-                                        <?= $values['price'] ?>
-                                    </p>
-                                </div>
-                            </center>
-                        <?php }
-                    }}
-                } }else { ?>
-                    <center>
-                        <div class=" items"><img src="public\css\img\shopping-cart.png" alt="cart-icon">
-                            <p>empty cart</p>
-                            <div>
-                    </center>
-                <?php }
-                ?>
+            <div class="cartdetails" id="cartDetails">
                 <form action="/orders">
                     <div class="input"><label for="delivery">Delivery</label> <input type="radio" name="order-type"
                             class="first-radio">$10.00</div>

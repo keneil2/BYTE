@@ -1,8 +1,33 @@
-<?php 
-require_once dirname(__FILE__,2)."/model";
-class Manage_Products{
-public function DispalyItems(Admin $Adminclass){
 
-}
 
-}
+
+ <?php
+                if (isset($_COOKIE["cart_items"])) {
+                    
+                    $data=unserialize($_COOKIE["cart_items"])?? [];
+                    if($data!==[]){
+                    foreach ($data as $array) {
+                        if(is_array($array)){
+                        foreach ($array as $values) {
+
+                            ?>
+                            <center>
+                                <div class="items"><img src="storage/<?= $values["image_path"] ?>" alt="cart-icon">
+                                    <p>
+                                        <?php echo $values["food_name"] ?>
+                                    </p>
+                                    <p>
+                                        <?= $values['price'] ?>
+                                    </p>
+                                </div>
+                            </center>
+                        <?php }
+                    }}
+                } }else { ?>
+                    <center>
+                        <div class=" items"><img src="public\css\img\shopping-cart.png" alt="cart-icon">
+                            <p>empty cart</p>
+                            <div>
+                    </center>
+                <?php }
+                ?>
