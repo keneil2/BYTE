@@ -1,1 +1,0 @@
-let RemoveBtn=document.getElementsByClassName("removeBtn");

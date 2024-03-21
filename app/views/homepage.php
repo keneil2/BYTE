@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/homepage.css">
     <title>Document</title>
+    <script>
+        
+        // function addToCart(product){
+        //      let xhr= new XMLHttpRequest();
+        //      xhr.open("GET","/addtocart?id="+ product,true);
+        //      xhr.onreadystatechange=function(){
+        //          if(xhr.readyState==XMLHttpRequest.DONE && xhr.status==200){
+        //            document.getElementById("cartDetails").innerHTML=xhr.responseText;
+        //          }
+        //      }
+        //      xhr.send();
+        //  }
+        //  window.addEventListener("load",function(){
+        //      let xhr= new XMLHttpRequest();
+        //      xhr.open("GET","/getcartdata",true);
+        //      xhr.onreadystatechange=function(){
+        //          if(xhr.readyState==XMLHttpRequest.DONE && xhr.status==200){
+        //            document.getElementById("cartDetails").innerHTML=xhr.responseText;
+        //          }
+        //      }
+        //      xhr.send(); 
+        //  })
+     </script>
 </head>
 <body>
 <?php 
@@ -42,6 +65,4 @@ require_once "layout/navbar.view.php";
  </div>
  <h2 class="featured" >FEATURE DISHES</h2>
  <?php require_once "layout/featured.php";?>
- <script srrc="cart.js"></script>
-</body>
 </html>

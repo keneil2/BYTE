@@ -40,6 +40,14 @@ class addtocart extends \Product
         }
         return $total;
     }
+    public function removeItem($items,$index){
+        if(isset($_GET["removeBtn"])){
+            if(isset ($items)&& isset($index)){
+                unset($items[$index]);
+                  }   
+        }
+     
+    }
 }
 if (isset ($_GET["id"])) {
     $addItem = new addtocart();
@@ -56,5 +64,7 @@ if (isset ($_GET["id"])) {
     $data=isset($_COOKIE["cart_items"]) ? unserialize($_COOKIE["cart_items"]):[];
     $data[]= $addItem->getcart();
     setcookie("cart_items", serialize($data), 0, "/", "localhost");
-        require_once "app/views/layout/cartitems.php";
+        require_once "app/views/layout/cartitems.php"; 
 }
+$removeItem= new addtocart();
+$removeItem->removeItem(unserialize($_COOKIE),$_GET["removeBtn"]);
