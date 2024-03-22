@@ -45,6 +45,7 @@ $stmt->closeCursor();
 $PDO = null;
      var_dump($status["Account_status"]);
 }
+
 public static function accountStatus(){
     $con=new dbcon();
     $PDO=$con->Db_connection();

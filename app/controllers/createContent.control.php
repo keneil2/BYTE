@@ -22,14 +22,15 @@ try {
     $price = Error::sanitizeInput($_POST["price"]);
     $descrition = Error::sanitizeInput($_POST["itemDescription"]);
     $categoryId=intval(Error::sanitizeInput($_POST["category-id"]));
+    $quantity=intval(Error::sanitizeInput($_POST["quantity"]));
     file::checkFileType($_FILES["pic"]["tmp_name"]);
     $filename = file::movefile($_FILES["pic"]["name"], $_FILES["pic"]["tmp_name"]);
 
     #uploading file to db
     $uploadFile = new File();
-    $uploadFile->setColumns(["food_name", "description", "price", "category_id", "image_path"]);
+    $uploadFile->setColumns(["food_name", "description", "price", "category_id", "image_path","quantity"]);
     $uploadFile->setTablename("foods");
-    $uploadFile->insertdata([$title, $descrition, $price, $_POST["category-id"] ,$filename]);
+    $uploadFile->insertdata([$title, $descrition, $price, $_POST["category-id"] ,$filename,$quantity]);
   } else {
     $_SESSION["request_method"] = "invalid request Method";
     ;

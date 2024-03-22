@@ -17,7 +17,14 @@ if (isset ($_COOKIE["cart_items"])) {
                             <p>
                                 <?= $values['price'] ?>
                             </p>
-                            <form action="/cartItems"><button name="removeBtn"value=<?=$count?> >Remove Item</button></form>
+                            <form action="/addtocart"><button name="removeBtn"value=<?=$count?> >Remove Item</button>
+                            <select name="quantity" id="">
+                            <option value="1"></option>
+                            <option value="1"></option>
+                            <option value="1"></option>
+                            <option value="1"></option>
+                            </select>
+                        </form>
 
                         </div>
                     </center>
@@ -43,9 +50,9 @@ if (isset ($_COOKIE["cart_items"])) {
 </p>
 <button class="removeBtn">Order Now</button>
 <?php 
-if(isset($_GET["removeBtn"])){
-    echo "btn clicked";
-     $index=(int)$_GET["removeBtn"];
-     unset($data[0]);
-     var_dump($data);
-} ?>
+// if(isset($_GET["removeBtn"])){
+//     echo "btn clicked";
+//      $index=(int)$_GET["removeBtn"];
+//      unset($data[0]);
+//      var_dump($data);
+// } ?>

@@ -1,6 +1,6 @@
 <?php
 namespace app\controllers;
-
+use app\models\AdminDb;
 require_once "config/dbcon.php";
 spl_autoload_register(fn($class) => require_once dirname(__FILE__, 2) . "/models" . "/" . $class . "s.model.php");
 
@@ -8,6 +8,7 @@ class addtocart extends \Product
 {
     private $cart;
     private $price;
+    private $cartItems;
     public function showProduct($tableName, $id)
     {
         $product = new \Product;
@@ -19,10 +20,11 @@ class addtocart extends \Product
     {
         return $this->cart;
     }
-    public function addTocart(\Product $product)
+    public function addTocart(AdminDb $adminDb, array $values)
     {
-
-        $this->cart = $product->selectItemByID(new \dbcon);
+        $adminDb->setTablename("cart_items");
+        $adminDb->setColumns(['product_id','user_id','Quantity','Price']);
+        $adminDb->insertdata($values);
 
 
     }
@@ -42,29 +44,66 @@ class addtocart extends \Product
     }
     public function removeItem($items,$index){
         if(isset($_GET["removeBtn"])){
+            echo $_GET["removeBtn"];
             if(isset ($items)&& isset($index)){
                 unset($items[$index]);
+                $_COOKIE["cart_items"]= $items;
                   }   
         }
      
     }
+    public static function getId( \dbcon $con ){
+    $dbconnection=$con->Db_connection();
+    $query="SELECT ID FROM customers WHERE Email=:email";
+    $stmt=$dbconnection->prepare($query);
+    $stmt->bindParam("email", $_SESSION["login_email"]);
+    $stmt->execute();
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    }
 }
-if (isset ($_GET["id"])) {
+if (isset ($_GET["Product_id"]) ) {
+
     $addItem = new addtocart();
-    $addItem->addTocart($addItem->showProduct("foods", $_GET["id"]));
+    $userId=$addItem->getId(new \dbcon);
+    $addItem->addTocart(new AdminDb,[$_GET["Product_id"],$userId["ID"],$_GET["quanity"],$_GET["price"]]);
     $addItem->getcart();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     // $data["cart_total"] = null;
-    if (isset ($_COOKIE["cart_items"])) {
-        $cartToatl = $addItem->CalculateTotalPrice(unserialize($_COOKIE["cart_items"]));
-        setcookie("cart_total", $cartToatl, 0, "/", "localhost");
-    }
-    $data=isset($_COOKIE["cart_items"]) ? unserialize($_COOKIE["cart_items"]):[];
-    $data[]= $addItem->getcart();
-    setcookie("cart_items", serialize($data), 0, "/", "localhost");
-        require_once "app/views/layout/cartitems.php"; 
-}
-$removeItem= new addtocart();
-$removeItem->removeItem(unserialize($_COOKIE),$_GET["removeBtn"]);
+//     if (isset ($_COOKIE["cart_items"]) ) {
+//         $cartToatl = $addItem->CalculateTotalPrice(unserialize($_COOKIE["cart_items"]));
+//         setcookie("cart_total", $cartToatl, 0, "/", "localhost");
+//     }
+//     $data=isset($_COOKIE["cart_items"]) ? unserialize($_COOKIE["cart_items"]):[];
+//     $data[]= $addItem->getcart();
+//     setcookie("cart_items", serialize($data), 0, "/", "localhost");
+//         require_once "app/views/layout/cartitems.php"; 
+// }
+// $removeItem= new addtocart();
+//  $removeItem->removeItem(unserialize($_COOKIE["cart_items"]),$_GET["removeBtn"]);
+// echo "<pre>";
+// $_COOKIE["cart_items"]=serialize($_COOKIE["cart_items"]);
+// echo "</pre>";

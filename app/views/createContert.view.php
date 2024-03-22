@@ -68,9 +68,7 @@ if(empty($_COOKIE["login_status"])){
             <input type="text" name="price" placeholder="Enter title of the item"><br>
             <select name='category-id'>
             <?php $display = new AdminDb();
-            // var_dump($_SESSION["file_error"]);
-            // echo  $_SESSION["wrong_file_Type"];
-            // unset($_SESSION["file_error"]);
+           
             $display->setTablename("categories");
             $result = $display->DbTableValues();
             echo "
@@ -80,8 +78,9 @@ if(empty($_COOKIE["login_status"])){
                 echo "<option value= $rowid>". $rows["CATEGORY_NAME"] . "</option>";
             }
             ?>
-          </select><br>
-            <textarea name="itemDescription" cols="40" rows="5" placeholder="Enter a description here"></textarea><br>
+          </select><br><br>
+          <input type="text" name="quantity" placeholder="Amount In Stock"><br><br>
+            <textarea name="itemDescription" cols="40" rows="5" placeholder="Enter a description here"></textarea><br><br><br>
        
           <button type="submit" name="submitBtn">ADD ITEM</button>
         </form>
