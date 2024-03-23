@@ -2,13 +2,14 @@
 namespace app\controllers;
 use app\models\AdminDb;
 require_once "config/dbcon.php";
+require_once dirname(__FILE__, 2)."/models/admin.model.php";
 spl_autoload_register(fn($class) => require_once dirname(__FILE__, 2) . "/models" . "/" . $class . "s.model.php");
 
 class addtocart extends \Product
 {
     private $cart;
     private $price;
-    private $cartItems;
+    // private $cartItems;
     public function showProduct($tableName, $id)
     {
         $product = new \Product;
@@ -58,17 +59,62 @@ class addtocart extends \Product
     $stmt=$dbconnection->prepare($query);
     $stmt->bindParam("email", $_SESSION["login_email"]);
     $stmt->execute();
-    return $stmt->fetch(\PDO::FETCH_ASSOC);
+     return $stmt->fetch(\PDO::FETCH_ASSOC);
 
     }
+    public function displaycartItems(\dbcon $con,$id)
+    {
+           $connnection = $con->Db_connection();
+           $query = "SELECT cart_items.*, foods.food_name AS product_name,
+           foods.price AS product_price, foods.image_path AS product_image
+           FROM cart_items INNER JOIN foods ON  foods.ID=product_id
+           WHERE cart_items.user_id=".$id["ID"];
+           $stmt = $connnection->query($query);
+           $stmt->execute();
+           $results = $stmt->fetchALL(\PDO::FETCH_ASSOC);
+           $this->cart=$results;
+           // $connnection->execute();
+
+    }
+
+    public function getTotalPrice(){
+        $totalPrice=0;
+        forEach ($this->cart  as $products){
+            $totalPrice+=$products['product_price'];
+        }
+        return $totalPrice;
+    }
+    public function removeFromCart(\dbcon $con,$id){
+        if(isset($id)){
+
+    $dbconnection=$con->Db_connection();
+    $query="DELETE FROM cart_items WHERE cart_product_id=:id";
+    $stmt=$dbconnection->prepare($query);
+    $stmt->bindParam("id",$id);
+    $stmt->execute();
+    }
 }
-if (isset ($_GET["Product_id"]) ) {
+
+}
+if (isset ($_GET["Product_id"]) && isset ($_GET["quanity"]) && isset ($_GET["price"]) ) {
 
     $addItem = new addtocart();
-    $userId=$addItem->getId(new \dbcon);
+    $userId=$addItem::getId(new \dbcon);
     $addItem->addTocart(new AdminDb,[$_GET["Product_id"],$userId["ID"],$_GET["quanity"],$_GET["price"]]);
-    $addItem->getcart();
+    // $addItem->getcart();
+    echo "<pre>";
+    var_dump($addItem->displaycartItems(new \dbcon,$userId));
+    echo "</pre>";
+    $addItem->displaycartItems(new \dbcon,$userId);
+    $_SESSION['data']=$addItem->getcart();
+    $_SESSION['product_price']=$addItem->getTotalPrice();
+    $addItem->removeFromCart( new \dbcon ,$_GET['cart_id']);
+    echo $_GET['cart_id'];
+    require_once dirname(__FILE__,2)."/views/layout/cartitems.php";
 }
+$addItem = new addtocart();
+$addItem->removeFromCart( new \dbcon ,$_GET['cart_id']);
+echo $_GET['cart_id'];
 
 
 

@@ -116,7 +116,7 @@
 .cartdetails p{
   margin-bottom: 10px;
 }
-.cartdetails button{
+.cartdetails .orderBTN{
   padding:10px 50px;
   border:none;
   background-color:rgb(255,69,0,0.8);                      

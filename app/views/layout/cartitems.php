@@ -1,37 +1,47 @@
-<?php
-if (isset ($_COOKIE["cart_items"])) {
 
-    $data = unserialize($_COOKIE["cart_items"]) ?? [];
+<style>
+    .removeBtn{
+        width:50px;
+        padding:2px;
+        color:red;
+        font-size: 0.7rem;
+    }
+</style>
+<?php
+
+if (isset($_SESSION['data'])) {
+
+    // $data = unserialize($_COOKIE["cart_items"]) ?? [];
     $count = -1;
-    if ($data !== []) {
-        foreach ($data as $array) {
-            if (is_array($array)) {
-                foreach ($array as $values) {
+        foreach ($_SESSION['data'] as $values) {
+            // if (is_array($array)) {
+                // foreach ($array as $values) {
                     $count++;
                     ?>
                     <center>
-                        <div class="items"><img src="storage/<?= $values["image_path"] ?>" alt="cart-icon">
+                        <div class="items"><img src="storage/<?= $values["product_image"] ?>" alt="cart-icon">
                             <p>
-                                <?php echo $values["food_name"] ?>
+                                <?php echo $values["product_name"] ?>
                             </p>
                             <p>
-                                <?= $values['price'] ?>
+                                <?= $values['product_price'] ?>
                             </p>
-                            <form action="/addtocart"><button name="removeBtn"value=<?=$count?> >Remove Item</button>
-                            <select name="quantity" id="">
+                            <form action="/addtocart">
+                            <button name="removeBtn" class="removeBtn" id="removeBtn" data-id=<?=$values['cart_product_id']?> >Remove</button>
+                            </form>
+                            <!-- <select name="quantity" id="">
                             <option value="1"></option>
                             <option value="1"></option>
                             <option value="1"></option>
                             <option value="1"></option>
                             </select>
-                        </form>
+                        </form> -->
 
                         </div>
                     </center>
-                <?php }
+                <?php //}
             }
-        }
-    }
+        // }
 } else { ?>
     <center>
         <div class=" items"><img src="public\css\img\shopping-cart.png" alt="cart-icon">
@@ -44,11 +54,11 @@ if (isset ($_COOKIE["cart_items"])) {
         class="first-radio">$10.00</div>
 <div class="inputs"> <label for="Pickup" id="label2">Pickup</label><input type="radio" name="order-type" id=""> $5.00
 </div>
-<?php $total = isset ($_COOKIE['cart_total']) ? $_COOKIE['cart_total'] : "" ?>
+<?php $total = isset ($_SESSION['product_price']) ?$_SESSION['product_price']: "" ?>
 <p>Total:
     <?= "  $" . $total . ".00" ?>
 </p>
-<button class="removeBtn">Order Now</button>
+<button class="orderBTN">Order Now</button>
 <?php 
 // if(isset($_GET["removeBtn"])){
 //     echo "btn clicked";

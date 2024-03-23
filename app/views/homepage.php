@@ -42,4 +42,6 @@ require_once "layout/navbar.view.php";
  </div>
  <h2 class="featured" >FEATURE DISHES</h2>
  <?php require_once "layout/featured.php";?>
+ <script src="cart.js"></script>
+</body>
 </html>

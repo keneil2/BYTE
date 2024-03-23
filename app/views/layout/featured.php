@@ -41,18 +41,21 @@ require_once dirname(__FILE__, 3) . "/controllers/displayProduct.control.php";
                     </form>
                     <?php if ($result[$i]["quantity"] < 2) { ?>
                         <div class="stock_status">
-                            <p class="status">not prepared yet</p>
-                            <small class="status_info">time to prepare: 30 minutes </small>
+                            <small class="status">not prepared yet</small>
+                            <!-- <small class="status_info">time to prepare: 30 minutes </small> -->
                         </div>
                     <?php } ?>
-                         <div class="quantity"><button>+</button><p id="number">1</p><button>-</button></div>
+                         <div class="quantity" id="quantity"><button class=increaseBtn>+</button><p id="number">1</p><button class=decreaseBtn>-</button>
+                         <div id="feedback"></div>
+                         <input type="hidden"  id="availableQuantity" data-quantity=<?=$result[$i]["quantity"]?>>
+                        </div>
                     <p class="price">
                         <?= "$" . $result[$i]["price"] ?>
                     <p>
-                    <!-- <form action="" method='POST'> -->
+                    <!-- <form action="/addtocart" method='GET'> -->
+                       
                         <input type="hidden" name="Product_id" class="price" data-price=<?=$result[$i]["price"]?>>
-                        <button data-id=<?= $result[$i]['ID'] ?> class="Addbutton" id="addtocart">
-                            Add to cart</button>
+                        <button data-id=<?= $result[$i]['ID'] ?> class="Addbutton" id="addtocart">Add to cart</button>
                     <!-- </form> -->
 
                     <form action=""><input type="hidden" class="p_id" name="Product_id" id="Product_id"
@@ -73,12 +76,11 @@ require_once dirname(__FILE__, 3) . "/controllers/displayProduct.control.php";
                 <div class="inputs"> <label for="Pickup" id="label2">Pickup</label><input type="radio" name="order-type"
                         id=""> $5.00</div>
                 <p>Total:</p>
-                <button class="removeBtn">Order Now</button>
+                <button class="orderBTN">Order Now</button>
             </form>
         </div>
     </div>
 </div>
-<script src="cart.js"></script>
-</body>
+
 
 </html>
