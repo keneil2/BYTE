@@ -5,7 +5,7 @@ require_once "config/dbcon.php";
 require_once dirname(__FILE__, 2)."/models/admin.model.php";
 spl_autoload_register(fn($class) => require_once dirname(__FILE__, 2) . "/models" . "/" . $class . "s.model.php");
 
-class addtocart extends \Product
+class Cart_controller extends \Product
 {
     private $cart;
     private $price;
@@ -96,9 +96,11 @@ class addtocart extends \Product
 }
 
 }
+
+// adding Items to cart
 if (isset ($_GET["Product_id"]) && isset ($_GET["quanity"]) && isset ($_GET["price"]) ) {
 
-    $addItem = new addtocart();
+    $addItem = new Cart_controller();
     $userId=$addItem::getId(new \dbcon);
     $addItem->addTocart(new AdminDb,[$_GET["Product_id"],$userId["ID"],$_GET["quanity"],$_GET["price"]]);
     // $addItem->getcart();
@@ -108,13 +110,21 @@ if (isset ($_GET["Product_id"]) && isset ($_GET["quanity"]) && isset ($_GET["pri
     $addItem->displaycartItems(new \dbcon,$userId);
     $_SESSION['data']=$addItem->getcart();
     $_SESSION['product_price']=$addItem->getTotalPrice();
+}
+
+
+// removing Items from cart
+$addItem = new Cart_controller();
+if(isset($_GET['cart_id'])){
     $addItem->removeFromCart( new \dbcon ,$_GET['cart_id']);
     echo $_GET['cart_id'];
-    require_once dirname(__FILE__,2)."/views/layout/cartitems.php";
+    $userId=$addItem::getId(new \dbcon);
+    $addItem->displaycartItems(new \dbcon,$userId);
+    $_SESSION['data']=$addItem->getcart();
+    $_SESSION['product_price']=$addItem->getTotalPrice();
 }
-$addItem = new addtocart();
-$addItem->removeFromCart( new \dbcon ,$_GET['cart_id']);
-echo $_GET['cart_id'];
+require_once dirname(__FILE__,2)."/views/layout/cartitems.php";
+
 
 
 

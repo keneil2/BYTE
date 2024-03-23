@@ -1,10 +1,14 @@
 
 <style>
     .removeBtn{
-        width:50px;
+        /* width:50px; */
         padding:2px;
-        color:red;
-        font-size: 0.7rem;
+        height:15px;
+        color:white;
+        background-color: orangered;
+        font-size: 0.5rem;
+        border:none;
+        border-radius:2px;
     }
 </style>
 <?php
@@ -26,9 +30,10 @@ if (isset($_SESSION['data'])) {
                             <p>
                                 <?= $values['product_price'] ?>
                             </p>
-                            <form action="/addtocart">
-                            <button name="removeBtn" class="removeBtn" id="removeBtn" data-id=<?=$values['cart_product_id']?> >Remove</button>
-                            </form>
+                            <!-- <form action="/addtocart"> -->
+                            <button name="removeBtn" class="removeBtn" id="removeBtn" data-id=<?=$values['cart_product_id']?> >Remove</button><br>
+                            <div class=cartitemQuantity > <button>-</button><p>1</p><button>+</button></div>
+                            <!-- </form> -->
                             <!-- <select name="quantity" id="">
                             <option value="1"></option>
                             <option value="1"></option>
