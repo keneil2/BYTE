@@ -4,7 +4,7 @@ let decreaseBtn = document.querySelectorAll(".decreaseBtn");
 let deleteBtn = document.querySelectorAll("#removeBtn");
 // let  amount = document.getElementById("number").innerText;
 function addEvent() {
-  document.addEventListener("click", function(event) {
+  document.addEventListener("click", function (event) {
     if (event.target.classList.contains("removeBtn")) {
       const productId = event.target.getAttribute("data-id");
       console.log(productId);
@@ -13,16 +13,16 @@ function addEvent() {
     }
   });
 }
-function removeItemFromCart(productId){
-      let xhr= new XMLHttpRequest;
-      xhr.open("GET","/addtocart?cart_id="+productId,true);
-      xhr.onreadystatechange=function(){
-        if(xhr.readyState==XMLHttpRequest.DONE && xhr.status==200){
-          console.log(xhr.responseText);
-        document.getElementById("cartDetails").innerHTML = xhr.responseText;
-        }
-      };
-      xhr.send();
+function removeItemFromCart(productId) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "/addtocart?cart_id=" + productId, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+      console.log(xhr.responseText);
+      document.getElementById("cartDetails").innerHTML = xhr.responseText;
+    }
+  };
+  xhr.send();
 }
 
 // sending requset to the addtocart controller prevents the page from reloading when a request is sent
@@ -69,48 +69,54 @@ Array.from(addtoCart).forEach(function (element) {
   });
 });
 function quantityBtn() {
- let count=0;
+  let count = 0;
   console.log(decreaseBtn);
   decreaseBtn.forEach(function (decreaseBtn) {
     decreaseBtn.addEventListener("click", function () {
       count--;
-      if( count>=0){
-        updateQuantity(count, this.parentElement.querySelector("#number"),this.parentElement.querySelector("#availableQuantity"),this.parentElement.querySelector("#feedback")); 
+      if (count >= 0) {
+        updateQuantity(
+          count,
+          this.parentElement.querySelector("#number"),
+          this.parentElement.querySelector("#availableQuantity"),
+          this.parentElement.querySelector("#feedback")
+        );
         // updateQuantity(count)
       }
       console.log(count);
     });
-
   });
 
   increaseBtn.forEach(function (increaseBtn) {
     increaseBtn.addEventListener("click", function () {
       count++;
       console.log(count);
-      updateQuantity(count, this.parentElement.querySelector("#number"),this.parentElement.querySelector("#availableQuantity"),this.parentElement.querySelector("#feedback"));
-      // this.parentElement.document.querySelector("#number").innerHTML=count;
-      // updateQuantity(count)
+      updateQuantity(
+        count,
+        this.parentElement.querySelector("#number"),
+        this.parentElement.querySelector("#availableQuantity"),
+        this.parentElement.querySelector("#feedback")
+      );
     });
   });
 }
 
-
 // allows the user to use the plus button and decrement button form the amount of item they would like to have in their cart
-function updateQuantity(newCount, targetElement,availableQuantity,targetdiv) {
-  let availableQuan= parseInt(availableQuantity.dataset.quantity);
-  if(availableQuan>=newCount){
+function updateQuantity(newCount, targetElement, availableQuantity, targetdiv) {
+  let availableQuan = parseInt(availableQuantity.dataset.quantity);
+  if (availableQuan >= newCount) {
     targetElement.innerText = newCount;
   }
-   if(availableQuan<newCount){
- let para=document.createElement("p");
-  node=document.createTextNode("out of stock");
-  para.appendChild(node);
-  element=document.getElementById("quantity");
-  targetdiv.appendChild(para);
+  if (availableQuan < newCount) {
+    let para = document.createElement("p");
+    node = document.createTextNode("out of stock");
+    para.appendChild(node);
+    element = document.getElementById("quantity");
+    targetdiv.appendChild(para);
   }
-  if(availableQuan>newCount){
-  targetdiv.innerHTML="";
+  if (availableQuan > newCount) {
+    targetdiv.innerHTML = "";
   }
-  console.log( availableQuan, newCount);
+  console.log(availableQuan, newCount);
 }
 quantityBtn();
