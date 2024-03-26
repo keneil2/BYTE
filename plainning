@@ -36,4 +36,12 @@ fix update for category and also delete
 
 
 //march 12,
-// tomarrow I will be doing the adding the food items to the front page 
+// tomarrow I will be doing the adding the food items to the front page.
+march 24 still working on this project here are the problems I am having:
+1.first of all  handle why the first Item is not calculating poperly for teh cart.
+2.remove the email from a SESSION to a cookie do the same for the data for the user so that I can besaved when the user loads the page.
+3. make order page and redesign the items.
+4.make all the other pages functional.
+5.dispaly all the ordered Items on the admin side.
+6.gracefully handle errors using
+7.

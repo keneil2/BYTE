@@ -90,7 +90,7 @@ class Cart_controller extends \Product
     }
     public function removeFromCart(\dbcon $con, $id)
     {
-        if (isset ($id)) {
+        if (isset($id)) {
 
             $dbconnection = $con->Db_connection();
             $query = "DELETE FROM cart_items WHERE cart_product_id=:id";
@@ -102,54 +102,61 @@ class Cart_controller extends \Product
 
 }
 
-// adding Items to cart
-if (isset ($_GET["Product_id"]) && isset ($_GET["quanity"]) && isset ($_GET["price"])) {
-    $_SESSION["productsIds"][] = $_GET["Product_id"];
-    var_dump($_SESSION["productsIds"]);
-    $hashMap = [];
-    foreach ($_SESSION["productsIds"] as $ids) {
-        if (isset ($hashMap[$ids])) {
-            $hashMap[$ids]++;
-            if ($hashMap[$ids] == 2) {
-                $_GET["quanity"]++;
-            }
-        } else {
-            $hashMap[$ids] = 0;
+$cartContrl = new Cart_controller();
+$userId = $cartContrl::getId(new \dbcon);
+$hashMap = [];
+if (isset($_GET["Product_id"]) && isset($_GET["quanity"]) && isset($_GET["price"])) {
+    if (isset($_SESSION["productsIds"]) && in_array($_GET["Product_id"], $_SESSION["productsIds"])) {
+        // Product ID exists in session, update quantity in $hashMap
+        if (!isset($hashMap[$_GET["Product_id"]])) {
+            $hashMap[$_GET["Product_id"]] = 0;
         }
-
+        $hashMap[$_GET["Product_id"]] = $_GET["quanity"]+ $hashMap[$_GET["Product_id"]];
+        $cartContrl->updateProductQuantity($hashMap[$_GET["Product_id"]], ["ID" => $_GET["Product_id"]]);
+    } else {
+        // Product ID is new, add it to session and cart
+        $_SESSION["productsIds"][] = $_GET["Product_id"];
+        $cartContrl->addTocart(new AdminDb, [$_GET["Product_id"], $userId["ID"], $_GET["quanity"], $_GET["price"]]);
+        // Update cart display and session data
+        $cartContrl->displaycartItems(new \dbcon, $userId);
+        $_SESSION['data'] = $cartContrl->getcart();
+        $_SESSION['product_price'] = $cartContrl->getTotalPrice();
     }
-    foreach ($hashMap as $productid => $quantity) {
-        if ($quantity > 1) {
-            echo $_GET["quanity"];
-            $addItem = new Cart_controller();
-            $userId = $addItem::getId(new \dbcon);
-            $addItem->updateProductQuantity($_GET["quanity"], ["ID"=>$productid]);
-        }else{
-            $addItem = new Cart_controller();
-            $userId = $addItem::getId(new \dbcon);
-            $addItem->addTocart(new AdminDb, [$_GET["Product_id"], $userId["ID"], $_GET["quanity"], $_GET["price"]]);
-            $addItem->displaycartItems(new \dbcon, $userId);
-            $_SESSION['data'] = $addItem->getcart();
-            $_SESSION['product_price'] = $addItem->getTotalPrice();
-        }
-    }
-
-
-
-       
 }
 
 
-// removing Items from cart
-$addItem = new Cart_controller();
-if (isset ($_GET['cart_id'])) {
-    $addItem->removeFromCart(new \dbcon, $_GET['cart_id']);
-    echo $_GET['cart_id'];
-    $userId = $addItem::getId(new \dbcon);
 
-    $addItem->displaycartItems(new \dbcon, $userId);
-    $_SESSION['data'] = $addItem->getcart();
-    $_SESSION['product_price'] = $addItem->getTotalPrice();
+
+
+
+
+
+
+
+// removing Items from cart
+if (isset($_GET['cart_id'])) {
+    // updating productsId session
+    $cartContrl->setID($_GET['cart_id']);
+    $cartContrl->setTableName("cart_items");
+    $productData = $cartContrl->selectItemByID(new \dbcon, "cart_product_id");
+    $prouctId = $productData[0]["product_id"];
+    var_dump($prouctId);
+    // $productId=array_search($prouctId,$_SESSION["productsIds"]);
+    $cartContrl->removeFromCart(new \dbcon, $_GET['cart_id']);
+    unset($_SESSION["productsIds"][0]);
+    //use a foreach loop to remove all duplicate 
+    foreach ($_SESSION["productsIds"] as $index => $id) {
+        if ($id == $prouctId) {
+            unset($_SESSION["productsIds"][$index]);
+        }
+    }
+
+    echo $_GET['cart_id'];
+    $userId = $cartContrl::getId(new \dbcon);
+
+    $cartContrl->displaycartItems(new \dbcon, $userId);
+    $_SESSION['data'] = $cartContrl->getcart();
+    $_SESSION['product_price'] = $cartContrl->getTotalPrice();
 }
 require_once dirname(__FILE__, 2) . "/views/layout/cartitems.php";
 

@@ -37,15 +37,15 @@ class Product
        {
               $this->tableName = $tableName;
        }
-       public function selectItemByID(dbcon $databaseCon)
+       public function selectItemByID(dbcon $databaseCon,$columnName="ID")
        {
               if (isset ($this->id) && isset ($this->tableName)) {
                      $con = $databaseCon->Db_connection();
-                     $query = "SELECT * FROM $this->tableName WHERE ID=:id";
+                     $query = "SELECT * FROM $this->tableName WHERE $columnName=:id";
                      $stmt = $con->prepare($query);
                      $stmt->bindParam("id", $this->id);
                      $stmt->execute();
-                     $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
+                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                      return $result;
               } else {
                      throw new Exception("id or tablename not provided");
