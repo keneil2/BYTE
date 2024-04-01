@@ -32,15 +32,15 @@ if (isset($_SESSION['data'])) {
                             </p>
                             <!-- <form action="/addtocart"> -->
                             <button name="removeBtn" class="removeBtn" id="removeBtn" data-id=<?=$values['cart_product_id']?> >Remove</button><br>
-                            <div class=cartitemQuantity > <button>-</button><p>1</p><button>+</button></div>
+                            <div class=cartitemQuantity > <button>-</button><p><?=$values['Quantity']?></p><button>+</button></div>
                             <!-- </form> -->
-                            <!-- <select name="quantity" id="">
-                            <option value="1"></option>
-                            <option value="1"></option>
-                            <option value="1"></option>
-                            <option value="1"></option>
+                            <form action="">
+                           <select name="quantity" id="">
+                         <?php for($i=0;$i<=$values['Quantity'];$i++){
+                          ?> <option value=<?=$i?>><?=$i?></option>
+                          <?php } ?>
                             </select>
-                        </form> -->
+                </form>
 
                         </div>
                     </center>

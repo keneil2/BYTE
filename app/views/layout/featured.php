@@ -39,23 +39,25 @@ require_once dirname(__FILE__, 3) . "/controllers/displayProduct.control.php";
                                 <?= $result[$i]["food_name"] ?>
                             </button></h3>
                     </form>
-                    <?php if ($result[$i]["quantity"] < 2) { ?>
+                    <?php if ($result[$i]["quantity"] ===0) { ?>
                         <div class="stock_status">
-                            <small class="status">not prepared yet</small>
+                            <small class="status">out of stock</small>
                             <!-- <small class="status_info">time to prepare: 30 minutes </small> -->
                         </div>
+                    <?php }elseif($result[$i]["quantity"]<=2){?>
+                           <small class="status">less than 2 remaining low stock</small>
                     <?php } ?>
-                         <div class="quantity" id="quantity"><button class=increaseBtn>+</button><p id="number">1</p><button class=decreaseBtn>-</button>
+                         <!-- <div class="quantity" id="quantity"><button class=increaseBtn>+</button><p id="number">0</p><button class=decreaseBtn>-</button> -->
                          <div id="feedback"></div>
                          <input type="hidden"  id="availableQuantity" data-quantity=<?=$result[$i]["quantity"]?>>
-                        </div>
+                        <!-- </div> -->
                     <p class="price">
                         <?= "$" . $result[$i]["price"] ?>
                     <p>
                     <!-- <form action="/addtocart" method='GET'> -->
                        
                         <input type="hidden" name="Product_id" class="price" data-price=<?=$result[$i]["price"]?>>
-                        <button data-id=<?= $result[$i]['ID'] ?> class="Addbutton" id="addtocart">Add to cart</button>
+                        <button data-id=<?= $result[$i]['ID'] ?> class="Addbutton" id="addtocart" name="addtocart" >Add to cart</button>
                     <!-- </form> -->
 
                     <form action=""><input type="hidden" class="p_id" name="Product_id" id="Product_id"

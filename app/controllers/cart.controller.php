@@ -35,7 +35,7 @@ class Cart_controller extends \Product
     {
         $connection = new \dbcon;
         $conresults = $connection->Db_connection();
-        $query = "UPDATE cart_items SET Quantity=:newamount WHERE product_id=:id";
+        $query = "UPDATE cart_items SET Quantity=Quantity + :newamount WHERE product_id=:id";
         $stmt = $conresults->prepare($query);
         $stmt->bindParam("newamount", $newQuantity);
         $stmt->bindParam("id", $productId["ID"]);
@@ -84,7 +84,7 @@ class Cart_controller extends \Product
     {
         $totalPrice = 0;
         foreach ($this->cart as $products) {
-            $totalPrice += $products['product_price'];
+            $totalPrice += $products['product_price']*$products["Quantity"];
         }
         return $totalPrice;
     }
@@ -101,19 +101,17 @@ class Cart_controller extends \Product
     }
 
 }
-
+// echo $_GET["quanity"];
 $cartContrl = new Cart_controller();
 $userId = $cartContrl::getId(new \dbcon);
-$hashMap = [];
-if (isset($_GET["Product_id"]) && isset($_GET["quanity"]) && isset($_GET["price"])) {
+if (isset($_GET["Product_id"]) && isset($_GET["quanity"]) && isset($_GET["price"])){ 
     if (isset($_SESSION["productsIds"]) && in_array($_GET["Product_id"], $_SESSION["productsIds"])) {
-        // Product ID exists in session, update quantity in $hashMap
-        if (!isset($hashMap[$_GET["Product_id"]])) {
-            $hashMap[$_GET["Product_id"]] = 0;
-        }
-        $hashMap[$_GET["Product_id"]] = $_GET["quanity"]+ $hashMap[$_GET["Product_id"]];
-        $cartContrl->updateProductQuantity($hashMap[$_GET["Product_id"]], ["ID" => $_GET["Product_id"]]);
-    } else {
+        // Product ID exists in session, update quantity
+        $cartContrl->updateProductQuantity((int)$_GET["quanity"], ["ID" => $_GET["Product_id"]]);
+        $cartContrl->displaycartItems(new \dbcon, $userId);  
+        $_SESSION['data'] = $cartContrl->getcart();
+        $_SESSION['product_price'] = $cartContrl->getTotalPrice();
+    } else {    
         // Product ID is new, add it to session and cart
         $_SESSION["productsIds"][] = $_GET["Product_id"];
         $cartContrl->addTocart(new AdminDb, [$_GET["Product_id"], $userId["ID"], $_GET["quanity"], $_GET["price"]]);

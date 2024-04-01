@@ -2,6 +2,7 @@ let addtoCart = document.getElementsByClassName("Addbutton");
 let increaseBtn = document.querySelectorAll(".increaseBtn");
 let decreaseBtn = document.querySelectorAll(".decreaseBtn");
 let deleteBtn = document.querySelectorAll("#removeBtn");
+let count = 0;
 // let  amount = document.getElementById("number").innerText;
 function addEvent() {
   document.addEventListener("click", function (event) {
@@ -59,17 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
   xhr.send();
   addEvent();
 });
-// event listener fo the button  that will send the request
-Array.from(addtoCart).forEach(function (element) {
-  element.addEventListener("click", function () {
-    const productId = this.getAttribute("data-id");
-    let amount = document.getElementById("number").innerHTML;
-    let price = this.parentElement.querySelector(".price").dataset.price;
-    addToCart(productId, amount, price);
-  });
-});
 function quantityBtn() {
-  let count = 0;
   console.log(decreaseBtn);
   decreaseBtn.forEach(function (decreaseBtn) {
     decreaseBtn.addEventListener("click", function () {
@@ -120,3 +111,13 @@ function updateQuantity(newCount, targetElement, availableQuantity, targetdiv) {
   console.log(availableQuan, newCount);
 }
 quantityBtn();
+// event listener fo the button  that will send the request
+Array.from(addtoCart).forEach(function (element) {
+  element.addEventListener("click", function () {
+    const productId = this.getAttribute("data-id");
+    // let amount = document.querySelector("#number").innerHTML;
+    // console.log(amount);
+    let price = this.parentElement.querySelector(".price").dataset.price;
+    addToCart(productId, 1, price);
+  });
+});
