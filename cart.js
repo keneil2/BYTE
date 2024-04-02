@@ -121,3 +121,13 @@ Array.from(addtoCart).forEach(function (element) {
     addToCart(productId, 1, price);
   });
 });
+// document.addEventListener("DOMContentLoaded",function () {
+//   let deliveryprice=document.getElementById("delivery");
+// let Pickupprice=document.getElementById("Pickup");
+// let total=document.getElementById("total");
+// deliveryprice.addEventListener("change",function(){
+//   let Totalprice=total.innerHTML;
+//   console.log( Totalprice);
+//   Totalprice+=10;
+// })
+// })

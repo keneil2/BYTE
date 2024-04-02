@@ -34,7 +34,9 @@ class router
       "/delete_item" => "app\controllers\product_deleter.php",
       "/addtocart" => "app\controllers\cart.controller.php",
       "/getcartdata"=>"app/views/layout/cartitems.php",
-      "/cartItems"=>"app/views/layout/cartitems.php"
+      "/cartItems"=>"app/views/layout/cartitems.php",
+      "/checkoutProcess"=>"app/views/checkoutProcess.php",
+      "/buying"=>"app/views/layout/buyers.view.php"
 
    ];
    function __construct($uri)

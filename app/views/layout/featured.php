@@ -60,7 +60,7 @@ require_once dirname(__FILE__, 3) . "/controllers/displayProduct.control.php";
                         <button data-id=<?= $result[$i]['ID'] ?> class="Addbutton" id="addtocart" name="addtocart" >Add to cart</button>
                     <!-- </form> -->
 
-                    <form action=""><input type="hidden" class="p_id" name="Product_id" id="Product_id"
+                    <form action="/buying"><input type="hidden" class="p_id" name="Product_id" id="Product_id"
                             value=<?= $result[$i]["ID"] ?>><button class="buy_now">Buy now</button></form>
                 </center>
             </div>

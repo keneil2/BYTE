@@ -44,4 +44,11 @@ march 24 still working on this project here are the problems I am having:
 4.make all the other pages functional.
 5.dispaly all the ordered Items on the admin side.
 6.gracefully handle errors using
-7.
+7.for next project work on the sesssion management / logout btn
+
+april 2,2023
+planning the check process 
+// creat a table called order on the user add the address in the checkout page they are sent to the credit card page;
+// want to allow the user to update there addresses on the check page will dispaly the address and have a btn that say use this address and a btn that say add a new adress 
+// then the can go to the card page if a card is not there they card add one if there is a card they can see it;
+// and have the option to change it 
