@@ -10,6 +10,7 @@
 <body>
 
     <?php
+    
     spl_autoload_register(fn($class) => require_once dirname(__FILE__, 2) . "/models/" . strtolower($class) . ".php");
     $userId = 0;
     if (!isset($_SESSION["login_email"])) {
@@ -19,6 +20,8 @@
     echo $_SESSION["login_email"];
     $checkoutModel = new Checkout_model;
     $userId = $checkoutModel->getuserId($_SESSION["login_email"]);
+    $_SESSION["userId"]=$userId;
+    echo   var_dump($_SESSION["userId"]);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
         if (isset($_POST["order-type"]) && isset($_SESSION["total"]) && $_POST["order-type"] == 10) {
@@ -29,7 +32,7 @@
             header("Location:/home");
         }
         if (isset($_POST["order-type"]) && $_POST["order-type"] == 5) {
-            header("Location:/checkout");
+            header("Location:/buying");
         }}?>
        <?php if ($userId !== 0) {
             ?>
@@ -42,10 +45,20 @@
                     </h2>
                 <?php } ?>
                 <?php
+                if(isset($_SESSION["checkoutError"])){
+                 echo $_SESSION["checkoutError"];
+                } 
+                if(isset($_SESSION["checkoutErrors"])){
+       foreach($_SESSION["checkoutErrors"] as $error){
+              echo $error;
+       }
+                }
+                unset($_SESSION["checkoutError"]);
+                unset($_SESSION["checkoutErrors"]);
                 ?>            </nav>
             <h4>PLease Add an Address For shipping Your food</h4>
-            <form action="/checkout" method="POST">
-                <input type="text" placeholder=" Full name (First and Last name)">
+            <form action="/checkoutcontrl" method="POST">
+                <input type="text" placeholder=" Full name (First and Last name)" name="name">
                 <select name="parish" id="">
                     <option value="nothing">Select Your Parish</option>
                     <option value="Kingston">Kingston</option>
@@ -63,10 +76,10 @@
                     <option value="Manchester">Manchester</option>
                     <option value="Hanover">Hanover</option>
                 </select>
-                <input type="text" placeholder="Street address">
-                <input type="text" placeholder="City">
-                <input type="text" placeholder="Phone number">
-                <input type="submit" value="add this address">
+                <input type="text" placeholder="Street address" name="streetAddress">
+                <input type="text" placeholder="City" name="city">
+                <input type="text" placeholder="Phone number" name="phoneNumber">
+                <input type="submit" name="submitBtn" value="add this address">
             </form>
         <?php }?>
 </body>

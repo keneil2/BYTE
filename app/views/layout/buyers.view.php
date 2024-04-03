@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
   }
   if( isset($_GET["delivery_type"]) && isset($_GET["submitBtn"]) && strtolower($_GET["delivery_type"])=== "pickup"){
     // send them to the card page
-    header("Location:/checkout");
+    header("Location:/orderPage");
   }
     }
 ?>

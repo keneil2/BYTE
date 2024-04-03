@@ -35,6 +35,8 @@ class router
       "/addtocart" => "app\controllers\cart.controller.php",
       "/getcartdata"=>"app/views/layout/cartitems.php",
       "/cartItems"=>"app/views/layout/cartitems.php",
+      "/orderPage"=>"app/views/orderpage.php",
+      "/checkoutcontrl"=>"app\controllers\checkout.controller.php",
       "/checkoutProcess"=>"app/views/checkoutProcess.php",
       "/buying"=>"app/views/layout/buyers.view.php"
 
