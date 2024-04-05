@@ -35,12 +35,13 @@ class checkoutProcess extends Error
          throw new Exception($e->getMessage());
         }
     }
-   public function isuserUnique($name,\dbcon $db,$userId){
+   public function isuserUnique(\dbcon $db,$userId){
     $con=$db->Db_connection();
     $query="SELECT * From orders where user_id=$userId";
     $res=$con->query($query);
     if($res->rowCount()>=1){
-        throw new Exception("you address already exist in our records");
+        // throw new Exception("you address already exist in our records");
+        header("Location:/orderPage");
     }
 
  }
@@ -50,15 +51,15 @@ try {
 
 
     $checkout = new checkoutProcess;
+    $checkout->isuserUnique(new dbcon,$_SESSION["userId"]["ID"]);
     if ($checkout->isRequestMethod("POST") && isset($_POST["submitBtn"])) {
         $name = $checkout->sanitizeInput($_POST["name"]);
-        $Parish = $checkout->sanitizeInput($_POST["Parish"]);
+        $Parish = $checkout->sanitizeInput($_POST["parish"]);
         $streetAddress = $checkout->sanitizeInput($_POST["streetAddress"]);
         $City = $checkout->sanitizeInput($_POST["city"]);
         $phoneNumber = $checkout->sanitizeInput($_POST["phoneNumber"]);
         // handling most clientside errors 
         $checkout->handleAllError($_POST,["name","parish","streetAddress","city","phoneNumber"],URLPATH:"/checkoutProcess",errorName:"checkoutErrors");
-        $checkout->isuserUnique($name,new dbcon,$_SESSION["userId"]["ID"]);
         // adding info to db
         $checkout->setcols(["user_id", "name", "address", "phone_number"]);
         $checkout->insertdata(new dbcon, [$_SESSION["userId"]["ID"], $name, $Parish . "\n" . $streetAddress . "\n" . $City, $phoneNumber]);

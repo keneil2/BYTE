@@ -57,4 +57,6 @@ april 3,2024
 
 
 things to do 
-make a checkout Process controller
+make a checkout Process /check 
+// next to do is to install PHP STRIPE libarary and figure out how to use it
+

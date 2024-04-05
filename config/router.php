@@ -38,7 +38,8 @@ class router
       "/orderPage"=>"app/views/orderpage.php",
       "/checkoutcontrl"=>"app\controllers\checkout.controller.php",
       "/checkoutProcess"=>"app/views/checkoutProcess.php",
-      "/buying"=>"app/views/layout/buyers.view.php"
+      "/buying"=>"app/views/layout/buyers.view.php",
+      "/order-controller"=>"app\controllers\order.controller.php"
 
    ];
    function __construct($uri)

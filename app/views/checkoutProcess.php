@@ -10,16 +10,17 @@
 <body>
 
     <?php
-    
+
     spl_autoload_register(fn($class) => require_once dirname(__FILE__, 2) . "/models/" . strtolower($class) . ".php");
+    require_once dirname(__FILE__,2)."/controllers/checkout.controller.php";
     $userId = 0;
     if (!isset($_SESSION["login_email"])) {
         header("Location:/login");
-
     }
     echo $_SESSION["login_email"];
     $checkoutModel = new Checkout_model;
     $userId = $checkoutModel->getuserId($_SESSION["login_email"]);
+    
     $_SESSION["userId"]=$userId;
     echo   var_dump($_SESSION["userId"]);
 
@@ -59,7 +60,7 @@
             <h4>PLease Add an Address For shipping Your food</h4>
             <form action="/checkoutcontrl" method="POST">
                 <input type="text" placeholder=" Full name (First and Last name)" name="name">
-                <select name="parish" id="">
+                <select name="parish" >
                     <option value="nothing">Select Your Parish</option>
                     <option value="Kingston">Kingston</option>
                     <option value="St.catherine">St.catherine</option>
