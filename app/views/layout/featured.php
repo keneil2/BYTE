@@ -60,7 +60,7 @@ require_once dirname(__FILE__, 3) . "/controllers/displayProduct.control.php";
                         <button data-id=<?= $result[$i]['ID'] ?> class="Addbutton" id="addtocart" name="addtocart" >Add to cart</button>
                     <!-- </form> -->
 
-                    <form action="/buying"><input type="hidden" class="p_id" name="Product_id" id="Product_id"
+                    <form action="/checkoutProcess"><input type="hidden" class="p_id" name="Product_id" id="Product_id"
                             value=<?= $result[$i]["ID"] ?>><button class="buy_now">Buy now</button></form>
                 </center>
             </div>
@@ -72,7 +72,7 @@ require_once dirname(__FILE__, 3) . "/controllers/displayProduct.control.php";
     <div class="orderSummary" id="ordersummary">
         <div class="title">Order Summary</div>
         <div class="cartdetails" id="cartDetails">
-            <form action="/orders">
+            <form action="/checkoutProcess">
                 <div class="input"><label for="delivery">Delivery</label> <input type="radio" name="order-type"
                         class="first-radio">$10.00</div>
                 <div class="inputs"> <label for="Pickup" id="label2">Pickup</label><input type="radio" name="order-type"

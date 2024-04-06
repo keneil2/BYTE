@@ -23,8 +23,7 @@ if($errorcontroller->isRequestMethod("POST")){
    $errorcontroller->handleAllError($_POST,["name","cardNum","date","CVC"],URLPATH:"/orderPage",errorName:"order_errors");
    if(preg_match("/^[a-zA-z]+$/",$_POST["name"]) && preg_match("/[0-9]+/",$_POST["cardNum"]) && preg_match("/[0-9]+\/[0-9]+\/[0-9]{4}/",$_POST["date"]) && preg_match("/[0-9]{3}/",$_POST["CVC"])){
       
-   }else{
-      throw new InputErrors("please ensure you enter the correct information!");
+      // throw new InputErrors("please ensure you enter the correct information!");
    }
     if($errorcontroller->isRequestMethod("POST") && isset($_POST["upadteAdress"])){
       $updateAddress=new order_model;

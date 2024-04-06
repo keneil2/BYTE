@@ -18,8 +18,6 @@
         header("Location:/login");
     }
     echo $_SESSION["login_email"];
-    $checkoutModel = new Checkout_model;
-    $userId = $checkoutModel->getuserId($_SESSION["login_email"]);
     
     $_SESSION["userId"]=$userId;
     echo   var_dump($_SESSION["userId"]);

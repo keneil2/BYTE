@@ -8,11 +8,11 @@ class order_model extends dbcon{
   {
     try {
       $con = $this->Db_connection();
-      $query = "SELECT * FROM orders WHERE user_id=:id";
+      $query = "SELECT * FROM cart_items WHERE user_id=:id";
       $stmt = $con->prepare($query);
       $stmt->bindParam("id", $id);
       $stmt->execute();
-      $result = $stmt->fetch(\PDO::FETCH_ASSOC) ?? 'row does not exist';
+      $result = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? 'row does not exist';
       return $result;
     } catch (\PDOException $e) {
       return false;
